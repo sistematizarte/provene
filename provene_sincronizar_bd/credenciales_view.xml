@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Vista form de Res Users -->
+  <record model="ir.ui.view" id="provene_credenciales_tree_view">
+    <field name='name'>provene.credenciales.tree</field>
+    <field name='model'>provene.credenciales</field>
+    <field name='arch' type='xml'>
+      <tree string="Credenciales" default_order="create_date desc">
+        <field name="name" />
+        <field name="host_local" />
+        <field name="estatus" />
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="provene_credenciales_form_view">
+    <field name='name'>provene.credenciales.form</field>
+    <field name='model'>provene.credenciales</field>
+    <field name='arch' type='xml'>
+      <form string="Credenciales">
+        <header>
+          <field name="estatus" widget="statusbar" clickable="True"/>
+        </header>
+        <sheet>
+          <div name="button_box" class="oe_button_box">
+          </div>
+          <group string="Servidor" colspan="4" col="4">
+            <field name="name" colspan="2"/>
+            <field name="database_server" colspan="2"/>
+            <field name="user_db_server" colspan="2"/>
+            <field name="password_db_server" colspan="2"/>
+            <field name="user_server" colspan="2"/>
+            <field name="password_server" colspan="2" />
+            <field name="port_server" colspan="2"/>
+          </group>
+          <group string="Local" colspan="4" col="4">
+            <field name="host_local" colspan="2"/>
+            <field name="database_local" colspan="2"/>
+            <field name="user_db_local" colspan="2"/>
+            <field name="password_db_local" colspan="2"/>
+            <field name="user_local" colspan="2"/>
+            <field name="password_local" colspan="2" />
+            <field name="port_local" colspan="2"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_credenciales">
+    <field name="name">Transaccion</field>
+    <field name="res_model">provene.credenciales</field>
+    <field name="view_mode">tree,form</field>
+    <field name="limit">20</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Credenciales para sincronizar las Bases de Datos de la Nave</p>
+    </field>
+  </record>
+
+  <menuitem id="menu_credenciales" parent="menu_sincronizar_bd" name="Credenciales" action="action_view_credenciales" sequence="101"/>
+</odoo> 

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Comentario en la Views -->
+
+    <record model="ir.ui.view" id="registro_asesoria_calendar_form_view">
+        <field name='name'>registro.asesoria.calendar.form</field>
+        <field name='model'>registro.asesoria.calendario</field>
+        <field name='arch' type='xml'>
+            <form string="Actividad en La Nave" duplicate="0">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <table>
+                                <tr>
+                                    <td style="padding-right:10px; width: 650px">
+                                        <field name="name" placeholder="Actividad # 1 ...." attrs="{'readonly':[('solo_lectura','=',True)]}"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h1>
+
+                        <group col="2" colspan="2">
+                            <label for="tipo_actividad"/>
+                            <field name="tipo_actividad" nolabel="1" style="width:220px;" attrs="{'readonly':[('solo_lectura','=',True)]}"/>
+                            <newline/>
+                            <label for="tripulante_usuario"/>
+                            <field name="tripulante_usuario" style="width:220px;" nolabel="1" widget="many2many_tags" options="{'no_create': True, 'no_create_edit':True}"/>
+
+                        </group>
+                    </div>
+                    <notebook colspan="4">
+                        <page name="personal_information" string="Información de la Actividad">
+                            <group col="4" colspan="4">
+                                <field name="fecha_inicio_jornada" style="width:220px;"/>
+                                <field name="estado" options="{'no_create': True, 'no_create_edit':True}" style="width:220px;"/>
+                                <field name="fecha_fin_jornada" style="width:220px;"/>
+                                <field name="municipio" options="{'no_create': True, 'no_create_edit':True}" style="width:220px;"/>
+                                <field name="nacionalidad" options="{'no_create': True, 'no_create_edit':True}" style="width:220px;" invisible="True"/>
+                                <field name="parroquia" options="{'no_create': True, 'no_create_edit':True}" style="width:220px;"/>
+                                <field name="separator_campo" options="{'no_create': True, 'no_create_edit':True}" style="width:220px;" invisible="True"/>
+                                <field name="direccion" style="width:220px;"/>
+                                <separator colspan="2"/>
+                                <field name="solo_lectura" attrs="{'invisible':True}"/>
+
+                            </group>
+                            <group col="2" colspan="2">
+                                <field name="descripcion_jornada" style="width:680px;"/>
+                                <field name="fecha_reporte" style="width:300px;" attrs="{'invisible':True}" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="registro_asesoria_calendar_tree_view">
+        <field name='name'>registro.asesoria.calendar.tree</field>
+        <field name='model'>registro.asesoria.calendario</field>
+        <field name='arch' type='xml'>
+            <tree string="Actividad en La Nave">
+                <field name="tripulante_usuario" widget="many2many_tags"/>
+                <field name="name"/>
+                <field name="fecha_inicio_jornada"/>
+                <field name="fecha_fin_jornada"/>
+                <field name="tipo_actividad"/>
+                <field name="descripcion_jornada"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="registro_asesoria_calendar_calendar_view" model="ir.ui.view">
+        <field name='name'>registro.asesoria.calendar.calendar</field>
+        <field name="model">registro.asesoria.calendario</field>
+        <field name="arch" type="xml">
+            <calendar string = "Actividad en La Nave" date_start="fecha_inicio_jornada"  date_stop = "fecha_fin_jornada" color="tipo_actividad" mode = "month" quick_add = "False" event_open_popup = "True">
+
+                <field name="name" />
+                <field name="tipo_actividad" />
+                <field name="tripulante_usuario" widget='many2many_tags_avatar'/>
+
+            </calendar>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="registro_asesoria_calendario_search_view">
+        <field name='name'>registro.asesoria.calendario.search</field>
+        <field name='model'>registro.asesoria.calendario</field>
+        <field name="arch" type="xml">
+            <search string="Actividad en la Nave">
+                <field name="name"/>
+                <field name="fecha_inicio_jornada"/>
+                <field name="fecha_fin_jornada"/>
+                <field name="tipo_actividad"/>
+                <field name="descripcion_jornada"/>
+                <separator />
+                <filter string="Viajes del día" name="viaje_dia" domain="[('write_date', '>=',context_today().strftime('%Y-%m-%d'))]" help="Cantidad de Cuestionarios sociales realizados hoy"/>
+                <group expand="0" string="Group By">
+                    <filter string="Tipo de Actividad" name="tipo_actividad" context="{'group_by':'tipo_actividad'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_view_calendar_jornada">
+        <field name="name">Jornadas de la Nave</field>
+        <field name="res_model">registro.asesoria.calendario</field>
+        <field name="view_mode">calendar,tree,form,search</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Crea una nueva Actividad en la Nave</p>
+        </field>
+    </record> 
+
+                        
+-->
+    <!--  Declaramos los menu 
+-->
+    <menuitem id="menu_registro_asesoria_calendario" name="Bitácora" action="action_view_calendar_jornada" sequence="5"/>
+    <!--    <menuitem id="menu_registro_caso_legal" name="Registro Caso Legal" parent="menu_registro_asesoria" action="action_view_casos_legal"/>              
+-->
+
+</odoo> 

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Comentario en la Views -->
+
+  <record model="ir.ui.view" id="casos_legal_form_view">
+    <field name='name'>casos.legal.form</field>
+    <field name='model'>casos.legal</field>
+    <field name='arch' type='xml'>
+      <form string="Área Legal" duplicate="0">
+        <header>
+          <field name="titulo_jornada" style="padding-right:6px; font-weight:bold"/>
+          <field name="datos_jornada_calendario"/>
+          <field name="estatus" widget="statusbar" clickable="True"/>
+        </header>
+        <sheet>
+          <!--       <field name="foto" widget="image" style="padding-right:10px" class="oe_right oe_avatar"/> -->
+          <div class="oe_title">
+            <h2>
+              <table>
+                <tr>
+                  <td>
+                    <label for="cedula" string="Cédula del Pasajero:" style="width:275px; vertical-align:top;"/>
+                  </td>
+                  <td>
+                    <div class="o_row">
+                      <field name="cedula" style="width:450px !important;" widget="regex_mask" data-inputmask-regex="[0-9]{2,14}" attrs="{'readonly':[('solo_lectura','=',True)]}"/>
+                      <label for="" class="btn-bg btn-link mb4 fa fa-address-card-o oe_edit_only" style="cursor: pointer;width:2,7% !important" help="Buscar Cédula del pasajero" attrs="{'invisible':[('solo_lectura','=',True)]}"/>
+                      <label for="" class="btn-bg btn-link mb4 oe_edit_only" style="cursor: pointer;width:2,7% !important" help="Buscar Cédula del pasajero"/>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="nombre" string="Nombres:" style="vertical-align:top;"/>
+                  </td>
+                  <td>
+                    <field name="nombre" placeholder="Nombres ..." style="width:450px;" attrs="{'readonly':['|',('cedula','=',''),('cedula','=',False)],'invisible':['|',('cedula','=',False),'|',('cedula','=',''),'&amp;',('cedula','!=',''),('nombre','=','')]}"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="apellido" string="Apellidos:" style="vertical-align:top;"/>
+                  </td>
+                  <td>
+                    <field name="apellido" placeholder="Apellidos ..." style="width:450px;" attrs="{'readonly':['|',('cedula','=',''),('cedula','=',False)],'invisible':['|',('cedula','=',False),'|',('cedula','=',''),'&amp;',('cedula','!=',''),('apellido','=','')]}"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="categoria_area_legal" string="Seleccione la Categoria del Caso Legal:" style="vertical-align:top;"/>
+                  </td>
+                  <td>
+                    <field name="categoria_area_legal" widget="radio" options="{'horizontal': True}" attrs="{'readonly':[('solo_lectura','=',True)]}"/>
+                    <field name="fecha_documento_entregado" attrs="{'invisible':True}" />
+                    <field name="fecha_reporte" style="width:300px;" attrs="{'invisible':True}" />
+                  </td>
+                </tr>
+              </table>
+            </h2>
+          </div>
+
+          <group string="Redacción de Documentos" col="2" colspan="2" attrs="{'invisible': ['|', ('categoria_area_legal', '=', 'ase'), ('categoria_area_legal', '=', 'con')]}">
+            <separator colspan="2"/>
+            <label for="tipo_documento" string="Tipo de Documento" attrs="{'required':[('categoria_area_legal', '=', 'rdt')]}"/>
+            <field name="instruccion_caso" nolabel="1" widget="many2many_kanban" attrs="{'required':[('categoria_area_legal', '=', 'rdt')]}" context="{'group_by':'instruccion_valor'}">
+              <kanban quick_create="false" create="false" delete="false">
+                <field name="instruccion_valor"/>
+                <field name="requisito_documento"/>
+                <field name="Procedimiento_documento"/>
+                <templates>
+                  <t t-name="kanban-box">
+                    <div t-attf-class="oe_kanban_global_click_edit oe_semantic_html_override               oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                      <!-- dropdown menu -->
+                      <div class="oe_dropdown_kanban oe_edit_only">
+                        <div class="oe_dropdown_toggle">
+                          <i class="fa fa-bars fa-lg"/>
+                          <ul class="oe_dropdown_menu">
+                            <li>
+                              <a type="delete">Quitar Documento</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="oe_clear"/>
+                      </div>
+                      <div t-attf-class="oe_kanban_content" class="text-center">
+                        <p>
+                          <br>
+                            <b>Tipo de Documento:</b>
+                          </br>
+                        </p>
+                        <field name="instruccion_valor"/>
+                        <p>
+                          <br>
+                            <b>Requisitos:</b>
+                          </br>
+                        </p>
+                        <field name="requisito_documento" widget="Html"/>
+                        <p>
+                          <br>
+                            <b>Procedimiento:</b>
+                          </br>
+                        </p>
+                        <field name="Procedimiento_documento" widget="Html"/>
+                      </div>
+                    </div>
+                  </t>
+                </templates>
+              </kanban>
+            </field>
+          </group>
+          <group col="4" colspan="4" attrs="{'invisible': ['|', ('categoria_area_legal', '=', 'ase'), ('categoria_area_legal', '=', 'con')]}">
+            <field name="tripulante_asignado" style="width:300px;" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" attrs="{'required':[('categoria_area_legal', '=', 'rdt')]}"/>
+            <field name="recaudos_recibidos" widget="radio" attrs="{'required':[('categoria_area_legal', '=', 'rdt')]}"/>
+            <field name="observaciones_caso" style="width:300px;"/>
+            <field name="tipo_documento" attrs="{'invisible':1, 'required':[('categoria_area_legal', '=', 'rdt')]}" />
+          </group>
+
+          <group string="Asesorias" col="2" colspan="2" attrs="{'invisible': ['|', ('categoria_area_legal', '=', 'rdt'), ('categoria_area_legal', '=', 'con')]}">
+            <separator colspan="2"/>
+            <field name="datos_asesoria" style="width:600px;" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" attrs="{'required':[('categoria_area_legal', '=', 'ase')]}"/>
+            <separator colspan="2"/>
+            <field name="descripcion_asesoria" style="width:600px;" attrs="{'required':[('categoria_area_legal', '=', 'ase')]}"/>
+          </group>
+
+          <group string="Conciliación" col="4" colspan="4" attrs="{'invisible': ['|', ('categoria_area_legal', '=', 'ase'), ('categoria_area_legal', '=', 'rdt')]}">
+            <separator colspan="4"/>
+            <field name="cedula_parte2" style="width:275px;" attrs="{'required':[('categoria_area_legal', '=', 'con')]}"/>
+            <field name="nombre_parte2" style="width:275px;" attrs="{'required':[('categoria_area_legal', '=', 'con')]}"/>
+            <separator colspan="4"/>
+            <field name="direccion_parte2" style="width:275px;" attrs="{'required':[('categoria_area_legal', '=', 'con')]}"/>
+            <field name="fecha_citacion" style="width:275px;" attrs="{'required':[('categoria_area_legal', '=', 'con')]}"/>
+            <field name="solo_lectura" attrs="{'invisible':True}"/>
+
+          </group>
+
+
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="casos_legal_tree_view">
+    <field name='name'>casos.legal.tree</field>
+    <field name='model'>casos.legal</field>
+    <field name='arch' type='xml'>
+      <tree string="Área Legal" default_order="write_date desc">
+        <field name="nombre" />
+        <field name="apellido" />
+        <field name="cedula"/>
+        <field name="categoria_area_legal"/>
+        <field name="fecha_documento_entregado"/>
+        <field name="estatus"/>
+        <field name="datos_jornada_calendario"/>
+        <field name="create_uid" string="Registrado por:"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="casos_legal_kanban_view">
+    <field name='name'>casos.legal.kanban</field>
+    <field name='model'>casos.legal</field>
+    <field name="arch" type="xml">
+      <kanban default_group_by="estatus">
+        <field name="nombre" />
+        <field name="apellido" />
+        <field name="cedula"/>
+        <field name="categoria_area_legal"/>
+        <field name="estatus"/>
+        <field name="datos_jornada_calendario"/>
+        <progressbar field="estatus" colors='{"reg": "danger", "ela" : "warning", "ent":"success"}'/>
+        <templates>
+          <t t-name="kanban-box">
+            <div t-attf-class="oe_kanban_global_click_edit oe_semantic_html_override
+        oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+              <div class="oe_dropdown_kanban">
+                <!-- dropdown menu -->
+                <div class="oe_dropdown_toggle">
+                  <i class="fa fa-bars fa-lg"/>
+                  <ul class="oe_dropdown_menu">
+                    <li>
+                      <a type="edit">Editar Caso Legal</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="oe_clear"></div>
+              </div>
+              <div t-attf-class="oe_kanban_content">
+                <!-- title -->
+                <b>Nombres:</b>
+                <field name="nombre"/>
+                <br/>
+                <b>Apellidos:</b>
+                <field name="apellido"/>
+                <br/>
+                <b>Cedula:</b>
+                <field name="cedula"/>
+                <br/>
+                <b>Categoria del Caso:</b>
+                <field name="categoria_area_legal"/>
+                <br/>
+                <b>Participante de:</b>
+                <field name="datos_jornada_calendario"/>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="casos_legal_graph_view">
+    <field name='name'>casos.legal.graph</field>
+    <field name='model'>casos.legal</field>
+    <field name="arch" type="xml">
+      <graph string="Viajeros Registrados por area legal">
+        <field name="categoria_area_legal" type="row"/>
+        <field name="id" type="col"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="casos_legal_search_view">
+    <field name='name'>casos.legal.search</field>
+    <field name='model'>casos.legal</field>
+    <field name="arch" type="xml">
+      <search string="Search Registro Área Legal">
+        <field name="cedula"/>
+        <field name="nombre"/>
+        <field name="estatus"/>
+        <field name="datos_jornada_calendario"/>
+        <field name="tripulante_asignado"/>
+        <field name="instruccion_caso"/>
+        <field name="datos_asesoria"/>
+        <field name="fecha_citacion"/>
+        <separator />
+        <filter string="Total de Casos por Atender" name="casos_registrados por atender" domain="[('estatus', '=', 'reg')]" help="lista de casos legales registrados por atender"/>
+        <filter string="Total de Casos En Atencion" name="casos_registrados en atencion" domain="[('estatus', '=', 'ela')]" help="lista de casos legales registrados en atencion"/>
+        <filter string="Total de Casos Atendidos" name="casos_registrados atendidos" domain="[('estatus', '=', 'ent')]" help="lista de casos legales registrados atendidos"/>
+        <filter string="Documentos Entregados" name="documentos_entregados" domain="[('estatus', '=', 'ent'), ('categoria_area_legal', '=', 'rdt')]" help="Cantidad de documentos entregados"/>
+        <filter string="Asesorias Atendidas" name="asesorias_atendidas" domain="[('estatus', '=', 'ent'), ('categoria_area_legal', '=', 'ase')]" help="Cantidad de asesorias atendidas"/>
+        <filter string="Conciliaciones Realizadas" name="conciliaciones_realizadas" domain="[('estatus', '=', 'ent'), ('categoria_area_legal', '=', 'con')]" help="Cantidad de conciliaciones realizadas"/>
+        <filter string="Viajes del día" name="viaje_dia" domain="[('write_date', '>=',context_today().strftime('%Y-%m-%d'))]" help="Cantidad de viajes realizados hoy"/>
+        <filter string="Abogado Asignado" name="casos_tripulante_asignado" domain="[('tripulante_asignado', '=', context.get('uid') )]" help="Cantidad casos que tienes asignados"/>
+        <group expand="0" string="Group By">
+          <filter string="Jornada" name="jornada" context="{'group_by':'datos_jornada_calendario'}"/>
+          <filter string="Categoria" name="categoria_area_legal" context="{'group_by':'categoria_area_legal'}"/>
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="casos_legal_pivot_view">
+    <field name="name">casos.legal.pivot</field>
+    <field name="model">casos.legal</field>
+    <field name="arch" type="xml">
+      <pivot string="Área Legal ">
+        <field name="datos_jornada_calendario" type="col" />
+        <field name="categoria_area_legal" type="col"/>
+        <field name="estatus" type="col"/>
+        <field name="create_uid" type="row"/>
+      </pivot>
+    </field>
+  </record>
+
+
+  <record model="ir.actions.act_window" id="action_view_casos_legal">
+    <field name="name">Registrar Casos Legales</field>
+    <field name="res_model">casos.legal</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_seguimiento_caso_legal">
+    <field name="name">Seguimiento de Casos Legales</field>
+    <field name="res_model">casos.legal</field>
+    <field name="view_mode">kanban,form,tree,graph,pivot</field>
+    <field name="context">{'search_default_casos_tripulante_asignado':1}</field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_consulta_caso_legal">
+    <field name="name">Consultar Casos Legales</field>
+    <field name="res_model">casos.legal</field>
+    <field name="view_mode">tree,form,kanban,graph,pivot</field>
+    <field name="domain">[]</field>
+    <field name="context">{'search_default_viaje_dia':1}</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Consulta los Casos Legales Registrados en la Nave</p>
+    </field>
+  </record>
+
+  <menuitem id="menu_registro_caso_legal" name="Área Legal" action="action_view_casos_legal" sequence="2"/>
+  <menuitem id="menu_consulta_caso_legal" name="Consultar Casos" action="action_view_consulta_caso_legal" sequence="3"/>
+  <menuitem id="menu_seguimiento_caso_legal" name="Seguimiento Casos" action="action_view_seguimiento_caso_legal" sequence="4"/>
+
+</odoo>
+
+

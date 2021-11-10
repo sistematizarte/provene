@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista form de Res Users -->
+    <record id="res_users_form" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <field name="email" position="before">
+                <!-- <field name="image_1920" position="before"> -->
+
+                <label for="tipo_tripulante" class="oe_edit_only" string="Tipo Tripulante"/>
+                <h2>
+                    <field name="tipo_tripulante" />
+                </h2>
+                <label for="organizacion_que_representa" class="oe_edit_only" string="Organización que representa ese tripulante" />
+                <h2>
+                    <field name="organizacion_que_representa" />
+                </h2>
+
+                <label for="telefono" class="oe_edit_only" string="Teléfono de Contacto"/>
+                <h2>
+                    <field name="telefono" widget="mask" data-inputmask="'mask': '(9999) 999-9999','removemaskonsubmit' : true" />
+                </h2>
+                <!-- <label for="observaciones" class="oe_edit_only" string="observaciones" /> -->
+                <group>
+                    <field name="observaciones" widget="text" style="height:140px; overflow:auto" colspan="4" />
+                </group>
+                <label for="manifiesto" class="oe_edit_only" string="Manifiesto" />
+                <field name="manifiesto" widget="html" style="height:140px; overflow:auto" colspan="4" />
+                <group>
+                    <field name="aceptar_manifiesto" style="width:9%;" />
+                </group>
+            </field>
+            <!-- <field name="login" position="after"> -->
+            <!-- <field name="image_1920" position="before"> -->
+            <!-- <group> -->
+            <!-- <field name="manifiesto" widget="html" nolabel="1" style="width:300%; height:140px; overflow:auto" /> -->
+            <!-- <field name="manifiesto" widget="html" nolabel="1" style="height:140px; overflow:auto" colspan="4" />
+                    <field name="aceptar_manifiesto" />
+                </group> 
+            </field> -->
+        </field>
+    </record>
+
+    <!-- Vista Tree de Res Users -->
+    <record id="res_users_tree" model="ir.ui.view">
+        <field name="name">res.users.tree.inherit</field>
+        <field name="model">res.users</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="base.view_users_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="tipo_tripulante"/>
+                <field name="organizacion_que_representa" />
+                <field name="telefono" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Vista Form de Res Users en preferences-->
+    <record id="res_users_preferences_form" model="ir.ui.view">
+        <field name="name">res.users.preferences.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+        <field name="arch" type="xml">
+            <field name="email" position="after">
+                <field name="tipo_tripulante" attrs="{'required': False,'readonly': True}" />
+                <field name="organizacion_que_representa"/>
+                <field name="telefono" widget="mask" data-inputmask="'mask': '(9999) 999-9999','removemaskonsubmit' : true" attrs="{'required': False}" />
+            </field>
+        </field>
+    </record>
+</odoo> 

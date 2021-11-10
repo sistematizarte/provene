@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<odoo> 
+  <!-- Comentario en la Views --> 
+  <report 
+   id = "report_custom"
+   string = "Reporte Personal"
+   model = "registro.asesoria"
+   report_type = "qweb-pdf"
+   name = "provene.report_custom_template"
+   />
+
+   <template id = "report_custom_template"> 
+    <t t-call="web.html_container">     
+      <t t-call="web.external_layout">
+        <t  t-foreach="docs" t-as='o'>
+         <div class="page">
+          <div class= "oe_structure"/>
+          <div class="row">
+            <div style="margin:auto;"></div>
+            <center>        
+             <table class = "table table-condensed" style = "border: 2px solid #001F3F !important;">
+              <thead> 
+                <tr>
+                  <td colspan="8" style = "text-align:center;">
+                    <p><h4><strong>Pasajero Registrado</strong></h4></p>
+                  </td>
+                </tr>
+                <br/> 
+              </thead>
+                 <tbody>             
+                  <tr>                                   
+                   <td><p style = "text-align:left;"><strong>Nombres: </strong></p></td>
+                   <td><p style = "text-align:left;"/><h5 t-field="o.nombre"/></td>
+                   <td><p style = "text-align:left;"><strong>Apellidos: </strong></p></td>
+                   <td><p style = "text-align:left;"/><h5 t-field="o.apellido"/></td>
+                   <td></td>
+                   <td></td>                 
+                   <td><p style ="text-align:center;">
+                     <img t-if="not o.imagen" t-att-src="'/web/static/src/img/placeholder.png'" height="90" border="1" width="90"/>
+                     <img t-if="o.imagen" t-att-src="'data:image/png;base64,%s' % to_text(o.imagen)" height="90" border="1" width="90"/>
+                   </p></td>
+                   <td></td>  
+                 </tr>
+                 <tr>
+                  <td colspan="8"><p style = "text-align:center;"><h4><strong>Datos Básicos </strong></h4></p></td>
+                </tr>             
+                <tr>
+                  <td><p style = "text-align:;"><strong>Cédula: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.cedula"/></td>
+                  <td><p style = "text-align:;"><strong>Estado civil: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.estado_civil"/></td>
+                  <td><p style = "text-align:;"><strong>Sexo: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.genero"/></td>
+                  <td><p style = "text-align:;"><strong>Fecha de Nacimiento: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.fecha_nacimiento"/></td>
+                </tr>
+                <tr>
+                  <td colspan="8"><p style = "text-align:center;"><b><h4><strong>Dirección:</strong></h4></b></p></td>
+                </tr>
+                <tr>
+                  <td><p style = "text-align:;"><strong>País: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.nacionalidad"/></td>
+                  <td><p style = "text-align:;"><strong>Estado: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.estado"/></td>
+                  <td><p style = "text-align:;"><strong>Municipio: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.municipio"/></td>
+                  <td><p style = "text-align:;"><strong>Parroquia: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.parroquia"/></td>
+                </tr>
+                <tr>
+                  <td><p style = "text-align:;"><strong>Barrio / Urb. / Zona: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.barrio_urb_zona"/></td>
+                  <td><p style = "text-align:;"><strong>Calle / Callejón / Av. / Trs.: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.calle_callejon_av_trs"/></td>
+                  <td><p style = "text-align:;"><strong>N° Casa / Edf.: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.casa_edif"/></td>
+                  <td><p style = "text-align:;"><strong>Escalera: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.escalera"/></td>
+                </tr>             
+                <tr>                
+                  <td><p style = "text-align:;"><strong>Apartamento: </strong></p> </td>
+                  <td><p style = "text-align:left;" t-field="o.apartamento"/></td>
+                  <td><p style = "text-align:;"><strong>Piso: </strong></p></td>
+                  <td><p style = "text-align:left;" t-field="o.piso"/></td>
+                  <td><p style = "text-align:;"><strong>Referencia: </strong></p></td>
+                  <td colspan="3"><p style = "text-align:left;" t-field="o.direccion"/></td>            
+                </tr>                          
+                <tr>
+                  <td colspan="8"><p style = "text-align:center;"><b><h4><strong>Teléfono(s):</strong></h4></b></p></td>
+                </tr>
+                <tr>             
+                 <td><p style = "text-align:;"><strong>Teléfono de habitación: </strong></p></td>
+                 <td><p style = "text-align:left;" t-field="o.telefono_habitacion"/></td>
+                 <td><p style = "text-align:;"><strong>Teléfono Celular:</strong></p></td>
+                 <td><p style = "text-align:left;" t-field="o.telefono_celular"/></td>
+                 <td><p style = "text-align:;"><strong>Teléfono de Sitio de Trabajo:</strong></p></td>
+                 <td><p style = "text-align:left;" t-field="o.telefono_trabajo"/></td>
+                 <td><p style = "text-align:;"><strong>Posible Hora para Contacto:</strong></p></td>
+                 <td><p style = "text-align:left;" t-field="o.hora_contacto"/></td>                              
+               </tr>              
+               <tr>                   
+                 <td colspan="2"><p style = "text-align:left;"><strong>Registrado por:</strong></p></td>
+                 <td><p style = "text-align:left;" t-field="o.create_uid"/></td>
+                 <td><p style = "text-align:center;"><strong>Jornada: </strong></p></td> 
+                 <td><p style = "text-align:center;" t-field="o.datos_jornada_calendario"/></td> 
+                 <td colspan="2"><p style = "text-align:center;"><strong>Fecha de Reporte</strong></p></td>
+                 <td><p style = "text-align:left;" t-field="o.fecha_reporte"/></td>                                    
+               </tr>
+             </tbody> 
+             </table>
+             <div style="page-break-after: always"></div>          
+         </center>
+        <div class="footer">
+        <div class="text-center" style="border-top: 1px solid black;">
+          <ul class="list-inline">
+            <t t-foreach="docs[0]" t-as='e'/>
+            <li>Fecha de Reporte:<span t-field="docs[0].fecha_reporte"/></li>
+            <li>Page:<span class="page"/><strong>/</strong><span class="topage"/></li>
+          </ul>
+        </div>
+      </div>
+       </div>
+     </div>    
+   </t>
+ </t>
+</t>
+</template>                               
+</odoo> 

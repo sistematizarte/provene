@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<odoo>
+	<report 
+   id = "report_categoria"
+   string = "Por Categoria"
+   model = "casos.legal"
+   report_type = "qweb-html"
+   name = "provene.report_caso_categoria_template"
+   />
+   <template id = "report_caso_categoria_template"> 
+    <t t-call="web.html_container">
+      <t t-call="web.external_layout">      	
+        <div class="page">
+          <t t-set="cantidad" t-value="1" />
+          <center>
+            <!-- <div class = "col-xs-8" style="margin: auto;"> -->
+             <table class = "table table-condensed">
+              <thead>
+                <tr>
+                 <th>
+                 </th>
+                 <th>
+                 </th>
+             	 <th>
+                   <p style = "text-align:center;"><h4><strong>ÁREA LEGAL - CASOS:</strong></h4></p>
+                </th>
+                <th >
+                    <t t-foreach="docs[0]" t-as='i'>
+                      <p style = "text-align:left;"><h4  t-field="i.categoria_area_legal"/></p>                                 
+                      </t>
+               </th>
+               <th>
+                 </th>
+                 <th>
+                 </th>
+                </tr>
+                <tr>
+                 <th width="10%">
+                    <p style = "text-align:center;"><strong>Tipo de Documento</strong></p>
+                  </th>
+                  <th width="20%">
+                    <p style = "text-align:center;"><strong>Estatus</strong></p>
+                  </th>
+                  <th width="20%">
+                    <p style = "text-align:center;"><strong>Nombre</strong></p>
+                  </th>
+                  <th width="20%">
+                    <p style = "text-align:center;"><strong>Apellido</strong></p>
+                  </th>
+                  <th width="20%">
+                    <p style = "text-align:center;"><strong>Cédula</strong></p>
+                  </th>
+                  <th width="16%">
+                    <p style = "text-align:center;"><strong>Jornada</strong></p>
+                  </th>             
+                </tr>
+              </thead>
+              <tbody>                
+                <tr t-foreach="docs" t-as='o'>
+                  <t t-set="cantidad" t-value="cantidad + 1"/>                  
+                 <td>
+                    <p style = "text-align:center;" t-field="o.categoria_area_legal"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.estatus"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.nombre"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.apellido"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.cedula"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.datos_jornada_calendario"/>
+                  </td>                                  
+                </tr>
+              <tr>
+                <td>
+                    <p style = "text-align:center;"><strong>TOTAL DE CASOS</strong></p>
+                </td>
+              	  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>                 
+                    <td> <t t-set="total" t-value="cantidad - 1"/>
+                    <p style = "text-align:center;" t-esc="total"/></td>
+                </tr>                          
+              </tbody>
+            </table>         
+        </center>
+      </div>
+     
+    </t>
+  </t>
+</template>
+</odoo>
+

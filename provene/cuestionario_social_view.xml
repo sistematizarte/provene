@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Comentario en la Views -->
+
+  <record model="ir.ui.view" id="registro_cuestionario_social_form_view">
+    <field name='name'>registro.cuestionario.social.form</field>
+    <field name='model'>registro.cuestionario.social</field>
+    <field name='arch' type='xml'>
+      <form string="Cuestionario social">
+       <sheet>
+<!--         <field name="foto" widget="image" style="padding-right:10px" class="oe_right oe_avatar"/> -->
+        <div class="oe_title">
+          <h2>
+            <table>
+              <tr>
+                  <td><label for="datos_jornada_calendario" string="Nombre de la Jornada:"/></td>
+                  <td><field name="datos_jornada_calendario"/></td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="cedula" string="Cédula del Pasajero:" style="width:275px; vertical-align:top;"/>
+                </td>
+                <td>
+                  <field name="cedula" style="width:450px;" widget="regex_mask" data-inputmask-regex="[0-9]{2,9}"/>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="nombre" string="Nombres:" style="vertical-align:top;"/>
+                </td>
+                <td>
+                  <field name="nombre" placeholder="Nombres ..." style="width:450px;" attrs="{'readonly':['|',('cedula','=',''),('cedula','=',False)],'invisible':['|',('cedula','=',False),'|',('cedula','=',''),'&amp;',('cedula','!=',''),('nombre','=','')]}"/>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="apellido" string="Apellidos:" style="vertical-align:top;"/>
+                </td>
+                <td>
+                  <field name="apellido" placeholder="Apellidos ..." style="width:450px;" attrs="{'readonly':['|',('cedula','=',''),('cedula','=',False)],'invisible':['|',('cedula','=',False),'|',('cedula','=',''),'&amp;',('cedula','!=',''),('apellido','=','')]}"/>
+                </td>
+              </tr>
+            </table>
+          </h2>
+        </div>
+        <group>
+          <separator string="Cuestionario Social:" colspan="4" style="margin:30px 0px 20px 0px;"/>
+          <label for="cs1_actividad" />
+          <newline/>  
+          <field name="cs1_actividad" widget="radio" options="{'horizontal': true}" nolabel="1" attrs="{'required':True}" style="margin:12px 0px 25px 0px;"/>
+          <newline/>
+          <label for="cs2_actividad_asistencia" attrs="{'invisible':[('cs1_actividad','=','act2')],'required':[('cs1_actividad','!=','act2')]}"/>
+          <newline/>  
+          <field name="cs2_actividad_asistencia" widget="many2many_checkboxes" nolabel="1" attrs="{'invisible':[('cs1_actividad','=','act2')],'required':[('cs1_actividad','!=','act2')]}" style="margin:12px 0px 25px 0px;" />
+          <newline/>
+          <label for="cs3_capacidad" />
+          <newline/>      
+          <field name="cs3_capacidad" widget="radio" options="{'horizontal': true}" nolabel="1" style="margin:12px 0px 25px 0px;"/>
+          <newline/>
+          <label for="cs4_tribunales" attrs="{'invisible':[('cs3_capacidad','=','cap1')],'required':[('cs3_capacidad','!=','cap1')]}"/>
+          <newline/>
+          <field name="cs4_tribunales" nolabel="1" widget="many2many_checkboxes" attrs="{'invisible':[('cs3_capacidad','=','cap1')],'required':[('cs3_capacidad','!=','cap1')]}" style="margin:12px 0px 25px 0px;"/>
+          <newline/>
+          <label for="cs5_contribuir"/>
+          <newline/>
+          <field name="cs5_contribuir" nolabel="1" widget="radio" options="{'horizontal': true}" attrs="{'required':True}" style="margin:12px 0px 25px 0px;"/>
+          <newline/>
+          <label for="cs6_no_contribuir" attrs="{'invisible':[('cs5_contribuir','=','con1')],'required':[('cs5_contribuir','!=','con1')]}"/>
+          <newline/>
+          <field name="cs6_no_contribuir" nolabel="1" widget="many2many_checkboxes" attrs="{'invisible':[('cs5_contribuir','=','con1')],'required':[('cs5_contribuir','!=','con1')]}" style="margin:12px 0px 25px 0px;"/>
+          <newline/> 
+          <label for="cs7_participar_actividades"/>
+          <newline/>
+          <field name="cs7_participar_actividades" nolabel="1" widget="radio" options="{'horizontal': true}" attrs="{'required':True}" style="margin:12px 0px 25px 0px;"/>
+          <newline/>
+          <label for="cs8_ayuda_economica_exterior" attrs="{'invisible':[('cs7_participar_actividades','=','pact1')]}"/>
+          <newline/>
+          <field name="cs8_ayuda_economica_exterior" nolabel="1" style="width:600px;margin:12px 0px 12px 0px;" attrs="{'invisible':[('cs7_participar_actividades','=','pact1')]}" />
+          <newline/>
+          <label for="cs9_expectativas" />
+          <newline/>
+          <field name="cs9_expectativas" nolabel="1" widget="many2many_checkboxes" attrs="{'required':True}" style="margin:12px 0px 25px 0px;"/>
+         </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_cuestionario_social_tree_view">
+    <field name='name'>registro.cuestionario.social.tree</field>
+    <field name='model'>registro.cuestionario.social</field>
+    <field name='arch' type='xml'>
+      <tree string="Cuestionario social" default_order="write_date desc" >
+        <field name="nombre" />
+        <field name="apellido" />
+        <field name="cedula"/>
+        <field name="datos_jornada_calendario"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_cuestionario_social_kanban_view">
+   <field name='name'>registro.cuestionario.social.kanban</field>
+   <field name='model'>registro.cuestionario.social</field>
+   <field name="arch" type="xml">
+    <kanban>}
+        <field name="nombre" />
+        <field name="apellido" />
+        <field name="cedula"/>
+        <field name="datos_jornada_calendario"/>
+        <field name="cs1_actividad"/>
+        <field name="cs2_actividad_asistencia"/>
+        <field name="cs3_capacidad"/>
+        <field name="cs4_tribunales"/>
+        <field name="cs5_contribuir"/>
+        <field name="cs6_no_contribuir"/>
+        <field name="cs7_participar_actividades"/>
+        <field name="cs8_ayuda_economica_exterior"/>
+        <field name="cs9_expectativas"/>
+     <templates>
+      <t t-name="kanban-box">
+       <div
+        t-attf-class="oe_kanban_global_click_edit oe_semantic_html_override
+        oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+        <div class="oe_dropdown_kanban">
+         <!-- dropdown menu -->
+         <div class="oe_dropdown_toggle">
+          <i class="fa fa-bars fa-lg"/>
+          <ul class="oe_dropdown_menu">
+           <li>
+            <a type="edit">Editar Respuestas Cuestionario social</a>
+           </li>
+          </ul>
+         </div>
+         <div class="oe_clear"></div>
+        </div>
+        <div t-attf-class="oe_kanban_content">
+         <!-- title -->
+          <b>Nombres:</b>
+         <field name="nombre"/>
+         <br/>
+         <b>Apellidos:</b>
+         <field name="apellido"/>
+         <br/>
+         <b>Cedula:</b>
+         <field name="cedula"/>
+         <br/>
+         <b>Pregunta 1:</b>
+         <field name="cs1_actividad"/>
+         <br/>
+         <b>Pregunta 2:</b>
+         <field name="cs2_actividad_asistencia"/>
+         <br/>
+         <b>Pregunta 3:</b>
+         <field name="cs3_capacidad"/>
+         <br/>
+         <b> Pregunta 4:</b>
+         <field name="cs4_tribunales"/>
+         <br/>
+         <b>Pregunta 5:</b>
+         <field name="cs5_contribuir"/>
+          <br/>
+         <b>Pregunta 6:</b>
+         <field name="cs6_no_contribuir"/>
+         <br/>
+         <b>Pregunta 7:</b>
+         <field name="cs7_participar_actividades"/>
+         <br/>
+         <b> Pregunta 8:</b>
+         <field name="cs8_ayuda_economica_exterior"/>
+         <br/>
+         <b>Pregunta 9:</b>
+         <field name="cs9_expectativas"/>
+         <br/>
+         <b>Participante de:</b>
+         <field name="datos_jornada_calendario"/>
+        </div>
+       </div>
+      </t>
+     </templates>
+    </kanban>
+   </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_cuestionario_social_graph_view">
+    <field name='name'>registro.cuestionario.social.graph</field>
+    <field name='model'>registro.cuestionario.social</field>
+    <field name="arch" type="xml">
+      <graph string="Cuestionario social">
+        <field name="datos_jornada_calendario" type="row"/>
+        <field name="id" type="col"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_cuestionario_social_search_view">
+    <field name='name'>registro.cuestionario.social.search</field>
+    <field name='model'>registro.cuestionario.social</field>
+    <field name="arch" type="xml">
+      <search string="Cuestionario social">
+        <field name="nombre" />
+        <field name="apellido" />
+        <field name="cedula"/>
+        <field name="datos_jornada_calendario"/>
+        <field name="cs1_actividad"/>
+        <field name="cs2_actividad_asistencia"/>
+        <field name="cs3_capacidad"/>
+        <field name="cs4_tribunales"/>
+        <field name="cs5_contribuir"/>
+        <field name="cs6_no_contribuir"/>
+        <field name="cs7_participar_actividades"/>
+        <field name="cs8_ayuda_economica_exterior"/>
+        <field name="cs9_expectativas"/>
+        <separator />
+        <filter string="Viajes del día" name="viaje_dia"
+                domain="[('write_date', '>=',context_today().strftime('%Y-%m-%d'))]"
+                help="Cantidad de Cuestionarios sociales realizados hoy"/>
+        <group expand="0" string="Group By">
+          <filter string="Pregunta 1" name="cs1_actividad" context="{'group_by':'cs1_actividad'}"/>
+          <!--           <filter string="Pregunta 2" name="cs2_actividad_asistencia" context="{'group_by':'cs2_actividad_asistencia'}"/> -->
+          <filter string="Pregunta 3" name="cs3_capacidad" context="{'group_by':'cs3_capacidad'}"/>
+          <!-- <filter string="Pregunta 4" name="cs4_tribunales" context="{'group_by':'cs4_tribunales'}"/> -->
+          <filter string="Pregunta 5" name="cs5_contribuir" context="{'group_by':'cs5_contribuir'}"/>
+          <!-- <filter string="Pregunta 6" name="cs6_no_contribuir" context="{'group_by':'cs6_no_contribuir'}"/> -->
+          <filter string="Pregunta 7" name="cs7_participar_actividades" context="{'group_by':'cs7_participar_actividades'}"/>
+          <!--           <filter string="Pregunta 8" name="cs8_ayuda_economica_exterior" context="{'group_by':'cs8_ayuda_economica_exterior'}"/> -->
+          <!--           <filter string="Pregunta 9" name="cs9_expectativas" context="{'group_by':'cs9_expectativas'}"/> -->
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_registro_cuestionario_social">
+    <field name="name">Área social</field>
+    <field name="res_model">registro.cuestionario.social</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record> 
+
+  <record model="ir.actions.act_window" id="action_view_consulta_cuestionario_social">
+    <field name="name">Consultar Área social</field>
+    <field name="res_model">registro.cuestionario.social</field>
+    <field name="view_mode">tree,form,kanban,graph</field>
+    <field name="domain">[]</field>
+    <field name="context">{'search_default_viaje_dia':1}</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Consultar Datos del Cuestionario social Registrados en la Nave</p>
+    </field>
+  </record> 
+
+  <menuitem id="menu_registro_cuestionario_social" name="Área social" action="action_view_registro_cuestionario_social" sequence="8"/>
+  <menuitem id="menu_consulta_cuestionario_social" name="Consultar Área social" action="action_view_consulta_cuestionario_social" sequence="9"/> 
+
+
+</odoo>
+
+

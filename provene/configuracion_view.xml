@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<odoo>
+
+        <record id="configuracion_documento_form" model="ir.ui.view">
+            <field name="name">configuracion.documento.form</field>
+            <field name="model">instruccion.valor</field>
+            <field name="arch" type="xml">
+                <form string="Redaccion de Documentos" duplicate="0">
+                    <sheet>                     
+                        <notebook colspan="4">
+                            <page name="Tipos_documentos" string="Caso Legal - Redaccion de Documentos">
+                                <group col="2" colspan="2">
+                                    <field name="instruccion_valor"/>
+                                    <field name="requisito_documento"/>
+                                    <field name="Procedimiento_documento"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="configuracion_documento_tree" model="ir.ui.view">
+            <field name="name">configuracion.documento.tree</field>
+            <field name="model">instruccion.valor</field>
+            <field name="arch" type="xml">
+                <tree string="Redaccion de Documentos">
+                    <field name="instruccion_valor"/>
+                    <field name="requisito_documento"/>
+                    <field name="Procedimiento_documento"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_documentos" model="ir.actions.act_window">
+            <field name="name">Tipos de Documentos</field>
+            <field name="res_model">instruccion.valor</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="configuracion_asesoria_form" model="ir.ui.view">
+            <field name="name">configuracion.asesoria.form</field>
+            <field name="model">asesoria.valor</field>
+            <field name="arch" type="xml">
+                <form string="Tipos de Asesorias" duplicate="0">
+                    <sheet>                     
+                        <notebook colspan="4">
+                            <page name="Tipos_asesorias" string="Caso Legal - Asesorias">
+                                <group col="2" colspan="2">
+                                    <field name="asesoria_valor"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="configuracion_asesoria_tree" model="ir.ui.view">
+            <field name="name">configuracion.asesoria.tree</field>
+            <field name="model">asesoria.valor</field>
+            <field name="arch" type="xml">
+                <tree string="Tipos de Asesorias">
+                    <field name="asesoria_valor"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_asesoria" model="ir.actions.act_window">
+            <field name="name">Tipos de Asesorias</field>
+            <field name="res_model">asesoria.valor</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="configuracion_manifiesto_form" model="ir.ui.view">
+            <field name="name">configuracion.manifiesto.form</field>
+            <field name="model">manifiesto.valor</field>
+            <field name="arch" type="xml">
+                <form string="Manifiesto" duplicate="0">
+                    <sheet>                     
+                        <notebook colspan="4">
+                            <page name="editar_manifiesto" string="Manifiesto">
+                                <group col="2" colspan="2">
+                                    <field name="manifiesto_valor"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="configuracion_manifiesto_tree" model="ir.ui.view">
+            <field name="name">configuracion.manifiesto.tree</field>
+            <field name="model">manifiesto.valor</field>
+            <field name="arch" type="xml">
+                <tree string="Manifiesto">
+                    <field name="manifiesto_valor"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_manifiesto" model="ir.actions.act_window">
+            <field name="name">Manifiesto</field>
+            <field name="res_model">manifiesto.valor</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="configuracion_directorio_form" model="ir.ui.view">
+            <field name="name">configuracion.directorio.form</field>
+            <field name="model">directorio.valor</field>
+            <field name="arch" type="xml">
+                <form string="Directorio" duplicate="0">
+                    <sheet>                     
+                        <notebook colspan="4">
+                            <page name="editar_directorio" string="Directorio">
+                                <group col="2" colspan="2">
+                                    <field name="directorio_valor"/>
+                                    <field name="nacionalidad"/>
+                                    <field name="estado"/>
+                                    <field name="municipio"/>
+                                    <field name="parroquia"/>
+                                    <field name="direccion_institucion"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="configuracion_directorio_tree" model="ir.ui.view">
+            <field name="name">configuracion.directorio.tree</field>
+            <field name="model">directorio.valor</field>
+            <field name="arch" type="xml">
+                <tree string="Directorio">
+                                    <field name="directorio_valor"/>
+                                    <field name="nacionalidad"/>
+                                    <field name="estado"/>
+                                    <field name="municipio"/>
+                                    <field name="parroquia"/>
+                                    <field name="direccion_institucion"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="configuracion_directorio_search">
+            <field name='name'>configuracion.directorio.search</field>
+            <field name='model'>directorio.valor</field>
+            <field name="arch" type="xml">
+              <search string="Buscar Directorio">
+                <field name="directorio_valor"/>
+                <field name="nacionalidad"/>
+                <field name="estado"/>
+                <field name="municipio"/>
+                <field name="parroquia"/>
+                <field name="direccion_institucion"/>
+                <group expand="0" string="Group By">
+                  <filter string="municipio" name="directorio_municipio" context="{'group_by':'municipio'}"/>
+                  <filter string="Categoria" name="directorio_valor" context="{'group_by':'directorio_valor'}"/>
+                </group>
+              </search>
+            </field>
+        </record>
+
+        <record id="action_directorio" model="ir.actions.act_window">
+            <field name="name">Directorio</field>
+            <field name="res_model">directorio.valor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_directorio_municipio':1}</field>
+        </record>
+
+        <!-- Submenu for Venezuela Political Territorial Division -->
+        <menuitem id="configuracion_provene" name="Configuración La Nave" sequence="14"/>
+        <!-- Entrada de menu para el modelo de res.country.state -->
+        <menuitem id="configuracion_documentos" name="Redacción de Documentos" parent="configuracion_provene" action="action_documentos"/>
+        <!-- Entrada de menu para el modelo de res.country.state.municipality -->
+        <menuitem id="configuracion_asesoria" name="Tipos de Asesoria" parent="configuracion_provene" action="action_asesoria"/>
+        <!-- Entrada de menu para el modelo de res.country.state.municipality.parish -->
+        <menuitem id="configuracion_manifiesto" name="Manifiesto" parent="configuracion_provene" action="action_manifiesto"/>
+        <menuitem id="configuracion_directorio" name="Directorio" action="action_directorio"/>
+</odoo>

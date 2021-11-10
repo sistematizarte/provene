@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Vista form de Res Users -->
+  <record model="ir.ui.view" id="provene_transaccion_bd_tree_view">
+    <field name='name'>provene.transaccion.bd.tree</field>
+    <field name='model'>provene.transaccion.bd</field>
+    <field name='arch' type='xml'>
+      <tree string="Transacciones" default_order="create_date desc">
+        <field name="name" />
+        <field name="transaccion_id" />
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="provene_transaccion_bd_form_view">
+    <field name='name'>provene.transaccion.bd.form</field>
+    <field name='model'>provene.transaccion.bd</field>
+    <field name='arch' type='xml'>
+      <form string="Transacciones">
+        <sheet>
+          <div name="button_box" class="oe_button_box">
+            <!-- <button name="action_sincronizar_bd" string="OK" type="object" class="oe_stat_button" icon="fa-balance-scale"/> -->
+            <!-- <button name="action_bajar_registro_asesoria" string="bajar Registro Asesoria" type="object" class="btn-primary" icon="fa-balance-scale"/> -->
+            <!-- <button name="action_bajar_casos_legal" string="bajar_casos_legal" type="object" class="btn-primary" icon="fa-balance-scale"/>
+            <button name="action_actualizar_casos_legal" string="actualizar_casos_legal" type="object" class="btn-primary" icon="fa-balance-scale"/>
+            <button name="action_actualizar_casos_legal_tripulante_asignado" string="actualizar_tripulante_asignado" type="object" class="btn-primary" icon="fa-balance-scale"/>-->
+            <!-- <button name="action_actualizar_registro_asesoria_completamente" string="Actualizar Registro Ases" type="object" class="btn-primary" icon="fa-refresh"/>
+            <button name="action_actualizar_casos_legal_completamente" string="Actualizar Casos Legal" type="object" class="btn-primary" icon="fa-refresh"/> -->
+            <!-- <button name="action_actualizar_claves_usuarios" string="actualizar_claves_usuarios" type="object" class="btn-primary" icon="fa-balance-scale"/> -->
+            <!-- <button name="action_bajar_usuarios" string="Bajar Usuarios" type="object" class="btn-primary" icon="fa-refresh"/>
+            <button name="action_bajar_registro_asesoria_3" string="Bajar Registro Ases" type="object" class="btn-primary" icon="fa-refresh"/>
+            <button name="mostrar_resultados_update" string="Mostrar Resul" type="object" class="btn-primary" icon="fa-balance-scale"/> -->
+          </div>
+          <group string="Transacciones" colspan="4" col="4">
+            <field name="name" attrs="{'readonly':True}" colspan="2"/>
+            <field name="transaccion_id" attrs="{'readonly':True}" colspan="2"/>
+            <field name="modelo_transaccion" attrs="{'readonly':True}" colspan="2"/>
+            <field name="metodo_transaccion" attrs="{'readonly':True}" colspan="2"/>
+            <field name="registro_id" attrs="{'readonly':True}"  colspan="2"/>
+            <field name="transaccion_sincronizada" attrs="{'readonly':True}" colspan="2" />
+            <field name="values_transaccion" attrs="{'readonly':True}"  colspan="4"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_transaccion_bd">
+    <field name="name">Transaccion</field>
+    <field name="res_model">provene.transaccion.bd</field>
+    <field name="view_mode">tree,form</field>
+    <field name="limit">20</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Transaccion de todos los registros de la Nave</p>
+    </field>
+  </record>
+
+  <menuitem id="menu_transaccion_bd" parent="menu_sincronizar_bd" name="Transacciones" action="action_view_transaccion_bd" sequence="100"/>
+</odoo> 

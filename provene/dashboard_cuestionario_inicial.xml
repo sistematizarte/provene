@@ -1,0 +1,893 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Comentario en la Views --><!-- Cuestionario inicial -->
+  <!-- Pregunta 1 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_1_graph">
+    <field name='name'>grafica.pregunta_inicial_1</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 1">
+        <field name="c4_nexo_familiar" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_1">
+    <field name="name">pregunta_inicial_1</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_1_graph"/>
+  </record> 
+
+  <!-- Pregunta 2 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_2_graph">
+    <field name='name'>grafica.pregunta_inicial_2</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 2">
+        <field name="c5_grado_instruccion" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_2">
+    <field name="name">pregunta_inicial_2</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_2_graph"/>
+  </record>
+
+  <!-- Pregunta 3 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_3_graph">
+    <field name='name'>grafica.pregunta_inicial_3</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 3">
+        <field name="c6_situacion_ocupacion" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_3">
+    <field name="name">pregunta_inicial_3</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_3_graph"/>
+  </record>
+
+  <!-- Pregunta 4 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_4_graph">
+    <field name='name'>grafica.pregunta_inicial_4</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 4">
+        <field name="c7_tipo_vivienda" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_4">
+    <field name="name">pregunta_inicial_4</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_4_graph"/>
+  </record>
+
+  <!-- Pregunta 5 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_5_graph">
+    <field name='name'>grafica.pregunta_inicial_5</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 5">
+        <field name="c8_tenencia_vivienda" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_5">
+    <field name="name">pregunta_inicial_5</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_5_graph"/>
+  </record>
+
+  <!-- Pregunta 6 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_6_graph">
+    <field name='name'>grafica.pregunta_inicial_6</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 6">
+        <field name="c9_personas_viven_usted" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_6">
+    <field name="name">pregunta_inicial_6</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_6_graph"/>
+  </record>
+
+  <!-- Pregunta 7 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_7_graph">
+    <field name='name'>grafica.pregunta_inicial_7</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 7">
+        <field name="c10_personas_menores_6" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_7">
+    <field name="name">pregunta_inicial_7</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_7_graph"/>
+  </record>
+
+  <!-- Pregunta 8 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_8_graph">
+    <field name='name'>grafica.pregunta_inicial_8</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 8">
+        <field name="c11_personas_menores_6_12" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_8">
+    <field name="name">pregunta_inicial_8</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_8_graph"/>
+  </record>
+
+  <!-- Pregunta 9 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_9_graph">
+    <field name='name'>grafica.pregunta_inicial_9</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 9">
+        <field name="c12_personas_menores_6_12_escuela" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_9">
+    <field name="name">pregunta_inicial_9</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_9_graph"/>
+  </record>
+
+  <!-- Pregunta 10 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_10_graph">
+    <field name='name'>grafica.pregunta_inicial_10</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 10">
+        <field name="c13_frecuencia_escuela" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_10">
+    <field name="name">pregunta_inicial_10</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_10_graph"/>
+  </record>
+
+  <!-- Pregunta 11 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_11_graph">
+    <field name='name'>grafica.pregunta_inicial_11</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 11">
+        <field name="c14_personas_ingresos" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_11">
+    <field name="name">pregunta_inicial_11</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_11_graph"/>
+  </record>
+
+  <!-- Pregunta 12 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_12_graph">
+    <field name='name'>grafica.pregunta_inicial_12</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 12">
+        <field name="c15_ingreso_hogar" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_12">
+    <field name="name">pregunta_inicial_12</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_12_graph"/>
+  </record>
+
+  <!-- Pregunta 13 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_13_graph">
+    <field name='name'>grafica.pregunta_inicial_13</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 13">
+        <field name="c16_principal_hogar" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_13">
+    <field name="name">pregunta_inicial_13</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_12_graph"/>
+  </record>
+
+
+  <!-- Pregunta 14 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_14_graph">
+    <field name='name'>grafica.pregunta_inicial_14</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 14">
+        <field name="c17_familia_exterior" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_14">
+    <field name="name">pregunta_inicial_14</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_14_graph"/>
+  </record>
+
+
+  <!-- Pregunta 15 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_15_graph">
+    <field name='name'>grafica.pregunta_inicial_15</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 15">
+        <field name="c18_ayuda_economica_exterior" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_15">
+    <field name="name">pregunta_inicial_15</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_15_graph"/>
+  </record>
+
+
+  <!-- Pregunta 16 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_16_graph">
+    <field name='name'>grafica.pregunta_inicial_16</field>
+    <field name='model'>registro.cuestionario1.c19</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 16">
+        <field name="cont_c19" type="measure"/>
+        <field name="c19_beneficios_estado" type="row"/> 
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_16">
+    <field name="name">pregunta_inicial_16</field>
+    <field name="res_model">registro.cuestionario1.c19</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_16_graph"/>
+  </record>
+
+  <!-- Pregunta 17 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_17_graph">
+    <field name='name'>grafica.pregunta_inicial_17</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 17">
+        <field name="c20_comidas_diarias" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_17">
+    <field name="name">pregunta_inicial_17</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_17_graph"/>
+  </record>
+
+  <!-- Pregunta 18 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_18_graph">
+    <field name='name'>grafica.pregunta_inicial_18</field>
+    <field name='model'>registro.cuestionario1.c21</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 18">
+        <field name="cont_c21" type="measure"/>
+        <field name="c21_principal_problema" type="row"/>  
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_18">
+    <field name="name">pregunta_inicial_18</field>
+    <field name="res_model">registro.cuestionario1.c21</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_18_graph"/>
+  </record>
+
+  <!-- Pregunta 19 -->
+  <record model="ir.ui.view" id="action_view_pregunta_inicial_19_graph">
+    <field name='name'>grafica.pregunta_inicial_19</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 19">
+        <field name="c22_referido" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_inicial_19">
+    <field name="name">pregunta_inicial_19</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_inicial_19_graph"/>
+  </record>
+
+
+
+  <!-- Vista Dashboard con todas las preguntas -->
+  <record model="ir.ui.view" id="dashboard_form_inicial_view">
+    <field name='name'>resultados.cuestionario.inicial.form</field>
+    <field name='model'>board.board</field>
+    <field name='arch' type='xml'>
+      <form string="Resultados Cuestionario inicial">
+        <board style ="1">
+          <column>
+            <action
+              string="Pregunta 1"
+              name="%(action_view_pregunta_inicial_1)d"/>
+            <action
+              string="Pregunta 2"
+              name="%(action_view_pregunta_inicial_2)d"/>
+            <action
+              string="Pregunta 3"
+              name="%(action_view_pregunta_inicial_3)d"/> 
+            <action
+              string="Pregunta 4"
+              name="%(action_view_pregunta_inicial_4)d"/>
+            <action
+              string="Pregunta 5"
+              name="%(action_view_pregunta_inicial_5)d"/>
+            <action
+              string="Pregunta 6"
+              name="%(action_view_pregunta_inicial_6)d"/>
+            <action
+              string="Pregunta 7"
+              name="%(action_view_pregunta_inicial_7)d"/>
+            <action
+              string="Pregunta 8"
+              name="%(action_view_pregunta_inicial_8)d"/>
+            <action
+              string="Pregunta 9"
+              name="%(action_view_pregunta_inicial_9)d"/>
+              <action
+              string="Pregunta 10"
+              name="%(action_view_pregunta_inicial_10)d"/>
+            <action
+              string="Pregunta 11"
+              name="%(action_view_pregunta_inicial_11)d"/>
+            <action
+              string="Pregunta 12"
+              name="%(action_view_pregunta_inicial_12)d"/> 
+            <action
+              string="Pregunta 13"
+              name="%(action_view_pregunta_inicial_13)d"/>
+            <action
+              string="Pregunta 14"
+              name="%(action_view_pregunta_inicial_14)d"/>
+            <action
+              string="Pregunta 15"
+              name="%(action_view_pregunta_inicial_15)d"/>
+            <action
+              string="Pregunta 16"
+              name="%(action_view_pregunta_inicial_16)d"/>
+            <action
+              string="Pregunta 17"
+              name="%(action_view_pregunta_inicial_17)d"/>
+            <action
+              string="Pregunta 18"
+              name="%(action_view_pregunta_inicial_18)d"/>   
+            <action
+              string="Pregunta 19"
+              name="%(action_view_pregunta_inicial_19)d"/>       
+          </column>
+        </board>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_resultados_cuestionario_inicial">
+   <field name="name">Resultados Cuestionario Inicial</field>
+    <field name="res_model">board.board</field>
+    <field name="view_mode">form</field>
+    <field name="usage">menu</field>
+   <field name="view_id" ref="dashboard_form_inicial_view"/>
+  </record>
+
+
+   <!-- Cuestionario Social -->
+
+  <!-- Pregunta 1 -->
+  <record model="ir.ui.view" id="action_view_pregunta_1_graph">
+    <field name='name'>grafica.pregunta_1</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 1">
+        <field name="cs1_actividad" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_1">
+    <field name="name">pregunta_1</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_1_graph"/>
+  </record> 
+
+  <!-- Pregunta 2 -->
+  <record model="ir.ui.view" id="action_view_pregunta_2_graph">
+    <field name='name'>grafica.pregunta_2</field>
+    <field name='model'>registro.cs2</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 2">
+        <field name="cont_cs2" type="measure"/>
+        <field name="cs2_actividad_asistencia" type="row"/>  
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_2">
+    <field name="name">pregunta_2</field>
+    <field name="res_model">registro.cs2</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_2_graph"/>
+  </record>
+
+  <!-- Pregunta 3 -->
+  <record model="ir.ui.view" id="action_view_pregunta_3_graph">
+    <field name='name'>grafica.pregunta_3</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 3">
+        <field name="cs3_capacidad" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_3">
+    <field name="name">pregunta_3</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_3_graph"/>
+  </record>
+
+  <!-- Pregunta 4 -->
+  <record model="ir.ui.view" id="action_view_pregunta_4_graph">
+    <field name='name'>grafica.pregunta_4</field>
+    <field name='model'>registro.cs4</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 4">
+        <field name="cont_cs4" type="measure"/>
+        <field name="cs4_tribunales" type="row"/>  
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_4">
+    <field name="name">pregunta_4</field>
+    <field name="res_model">registro.cs4</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_4_graph"/>
+  </record>
+
+  <!-- Pregunta 5 -->
+  <record model="ir.ui.view" id="action_view_pregunta_5_graph">
+    <field name='name'>grafica.pregunta_5</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 5">
+        <field name="cs5_contribuir" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_5">
+    <field name="name">pregunta_5</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_5_graph"/>
+  </record>
+
+  <!-- Pregunta 6 -->
+  <record model="ir.ui.view" id="action_view_pregunta_6_graph">
+    <field name='name'>grafica.pregunta_6</field>
+    <field name='model'>registro.cs6</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 6" type="pie">
+        <field name="cont_cs6" type="measure"/>
+        <field name="cs6_no_contribuir"/>  
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_6">
+    <field name="name">pregunta_6</field>
+    <field name="res_model">registro.cs6</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_6_graph"/>
+  </record>
+
+  <!-- Pregunta 7 -->
+  <record model="ir.ui.view" id="action_view_pregunta_7_graph">
+    <field name='name'>grafica.pregunta_7</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 7">
+        <field name="cs7_participar_actividades" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_7">
+    <field name="name">pregunta_7</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_7_graph"/>
+  </record>
+
+  <!-- Pregunta 9 -->
+  <record model="ir.ui.view" id="action_view_pregunta_9_graph">
+    <field name='name'>grafica.pregunta_9</field>
+    <field name='model'>registro.cs9</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 9">
+        <field name="cont_cs9" type="measure"/>
+        <field name="cs9_expectativas" type="row"/>  
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_9">
+    <field name="name">pregunta_9</field>
+    <field name="res_model">registro.cs9</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_9_graph"/>
+  </record>
+
+  <!-- Vista Dashboard con todas las preguntas -->
+  <record model="ir.ui.view" id="dashboard_form_social_view">
+    <field name='name'>resultados.cuestionario.social.form</field>
+    <field name='model'>board.board</field>
+    <field name='arch' type='xml'>
+      <form string="Resultados Cuestionario social">
+        <board style ="1">
+          <column>
+            <action
+              string="Pregunta 1"
+              name="%(action_view_pregunta_1)d"/>
+            <action
+              string="Pregunta 2"
+              name="%(action_view_pregunta_2)d"/>
+            <action
+              string="Pregunta 3"
+              name="%(action_view_pregunta_3)d"/> 
+            <action
+              string="Pregunta 4"
+              name="%(action_view_pregunta_4)d"/>
+            <action
+              string="Pregunta 5"
+              name="%(action_view_pregunta_5)d"/>
+            <action
+              string="Pregunta 6"
+              name="%(action_view_pregunta_6)d"/>
+            <action
+              string="Pregunta 7"
+              name="%(action_view_pregunta_7)d"/>
+            <action
+              string="Pregunta 9"
+              name="%(action_view_pregunta_9)d"/>         
+          </column>
+        </board>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_resultados_cuestionario_social">
+    <field name="name">Resultados Área social</field>
+    <field name="res_model">board.board</field>
+    <field name="view_mode">form</field>
+    <field name="usage">menu</field>
+    <field name="view_id" ref="dashboard_form_social_view"/>
+  </record> 
+
+
+   <!-- Cuestionario Legal -->
+
+
+
+  <!-- Pregunta 1 -->
+  <record model="ir.ui.view" id="action_view_pregunta_legal_1_graph">
+    <field name='name'>grafica.cuestionario.legal</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 1">
+        <field name="cl1_servicio" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_legal_1">
+    <field name="name">pregunta_legal_1</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_legal_1_graph"/>
+  </record>
+
+  <!-- Pregunta 2 -->
+  <record model="ir.ui.view" id="action_view_pregunta_legal_2_graph">
+    <field name='name'>grafica.pregunta_legal_2</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 2">
+        <field name="cl2_canalizar" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_legal_2">
+    <field name="name">pregunta_legal_2</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_legal_2_graph"/>
+  </record>
+
+
+  <!-- Pregunta 3 -->
+  <record model="ir.ui.view" id="action_view_pregunta_legal_3_graph">
+    <field name='name'>grafica.pregunta_legal_4</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 3">
+        <field name="cl4_asistencia" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_legal_3">
+    <field name="name">pregunta_legal_4</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_legal_3_graph"/>
+  </record>
+
+
+
+
+
+
+  <!-- Pregunta 4 -->
+  <record model="ir.ui.view" id="action_view_pregunta_legal_4_graph">
+    <field name='name'>grafica.cuestionario.legal</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 4">
+        <field name="cl5_tramite" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_legal_4">
+    <field name="name">pregunta_legal_5</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_legal_4_graph"/>
+  </record>
+
+  <!-- Pregunta 5 -->
+  <record model="ir.ui.view" id="action_view_pregunta_legal_5_graph">
+    <field name='name'>grafica.pregunta_legal_6</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 5">
+        <field name="cl6_tribunales" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_legal_5">
+    <field name="name">pregunta_legal_6</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_legal_5_graph"/>
+  </record>
+
+  <!-- Pregunta 6 -->
+  <record model="ir.ui.view" id="action_view_pregunta_legal_6_graph">
+    <field name='name'>grafica.pregunta_legal_7</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 6">
+        <field name="cl7_experiencia" type="row"/>
+        <field name="id" type="measure"/> 
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_legal_6">
+    <field name="name">pregunta_legal_7</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_legal_6_graph"/>
+  </record>
+
+  <!-- Pregunta 7 -->
+  <record model="ir.ui.view" id="action_view_pregunta_legal_7_graph">
+    <field name='name'>grafica.pregunta_legal_8</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 7">
+        <field name="cl8_ddhh" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_legal_7">
+    <field name="name">pregunta_legal_8</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_legal_7_graph"/>
+  </record>
+
+
+
+
+
+  <!-- Pregunta 8 -->
+  <record model="ir.ui.view" id="action_view_pregunta_legal_8_graph">
+    <field name='name'>grafica.cuestionario.legal</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 8">
+        <field name="cl9_justicia" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_legal_8">
+    <field name="name">pregunta_legal_9</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_legal_8_graph"/>
+  </record>
+
+  <!-- Pregunta 9 -->
+  <record model="ir.ui.view" id="action_view_pregunta_legal_9_graph">
+    <field name='name'>grafica.pregunta_legal_10</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Pregunta 9">
+        <field name="cl10_transicional" type="row"/>
+        <field name="id" type="measure"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_pregunta_legal_9">
+    <field name="name">pregunta_legal_10</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="action_view_pregunta_legal_9_graph"/>
+  </record>
+
+
+  <!-- Vista Dashboard con todas las preguntas -->
+  <record model="ir.ui.view" id="dashboard_form_legal_view">
+    <field name='name'>resultados.cuestionario.legal.form</field>
+    <field name='model'>board.board</field>
+    <field name='arch' type='xml'>
+      <form string="Resultado Cuestionario Legal">
+        <board style ="1">
+          <column>
+            <action
+              string="Pregunta 1"
+              name="%(action_view_pregunta_legal_1)d"/>
+            <action
+              string="Pregunta 2"
+              name="%(action_view_pregunta_legal_2)d"/> 
+            <action
+              string="Pregunta 3"
+              name="%(action_view_pregunta_legal_3)d"/> 
+            <action
+              string="Pregunta 4"
+              name="%(action_view_pregunta_legal_4)d"/>  
+            <action
+              string="Pregunta 5"
+              name="%(action_view_pregunta_legal_5)d"/>
+            <action
+              string="Pregunta 6"
+              name="%(action_view_pregunta_legal_6)d"/> 
+            <action
+              string="Pregunta 7"
+              name="%(action_view_pregunta_legal_7)d"/>
+            <action
+              string="Pregunta 8"
+              name="%(action_view_pregunta_legal_8)d"/>   
+            <action
+              string="Pregunta 9"
+              name="%(action_view_pregunta_legal_9)d"/>
+
+
+          </column>
+        </board>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_resultados_cuestionario_legal">
+    <field name="name">Resultados Área legal</field>
+    <field name="res_model">board.board</field>
+    <field name="view_mode">form</field>
+    <field name="usage">menu</field>
+    <field name="view_id" ref="dashboard_form_legal_view"/>
+  </record> 
+
+<menuitem id="menu_resultados_cuestionario_inicial" name="Gráficas Cuestionarios"  sequence="11" action="action_view_resultados_cuestionario_inicial"/>
+<menuitem id="menu_resultados_cuestionario_legal" name="Resultado Cuestionario Legal" parent="menu_resultados_cuestionario_inicial" action="action_view_resultados_cuestionario_legal" sequence="3" />
+<menuitem id="menu_resultados_cuestionario_social" name="Resultado Cuestionario Social" parent="menu_resultados_cuestionario_inicial" action="action_view_resultados_cuestionario_social" sequence="2"/>
+
+
+</odoo>

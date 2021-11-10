@@ -1,0 +1,613 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record model="ir.ui.view" id="registro_asesoria_form_view">
+    <field name='name'>registro.asesoria.form</field>
+    <field name='model'>registro.asesoria</field>
+    <field name='arch' type='xml'>
+      <form string="Registro" duplicate="0">
+        <sheet>
+          <div name="button_box" class="oe_button_box">
+            <button type="action" class="oe_read_only btn-link" name="%(action_view_casos_legal)d" context="{'default_cedula': cedula}" icon="fa-balance-scale" string="Ir Área Legal" help="Registrar un Caso legal para este pasajero" attrs="{'invisible':[('cl1_servicio','=',False)]}" />
+            <button type="action" class="oe_read_only btn-link" name="%(action_view_registro_area_social_actividad_ventana)d" context="{'default_cedula': cedula,'default_cargar_nuevo_pasajero':'cnp2'}" icon="fa-users" string="Ir Área Social" help="Registrar un Caso social para este pasajero" attrs="{'invisible':[('cs1_actividad','=',False)]}" />
+          </div>
+
+          <field name="imagen" widget="image" style="padding-right:10px" class="oe_right oe_avatar"/>
+
+          <div class="oe_title">
+            <h1>
+              <table>
+                <tr>
+                  <td>
+                    <label for="datos_jornada_calendario" string="Nombre de la Jornada:"/>
+                  </td>
+                  <td>
+                    <field name="datos_jornada_calendario" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="nombre" string="Nombres:"/>
+                  </td>
+                  <td>
+                    <label for="apellido" string="Apellidos:"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <field name="nombre" placeholder="Nombres ..." style="width:460px;" widget="regex_mask" data-inputmask-regex="[a-zA-Z ]{2,300}"/>
+                  </td>
+                  <td>
+                    <field name="apellido" placeholder="Apellidos ..." style="width:460px;" widget="regex_mask" data-inputmask-regex="[a-zA-Z ]{2,300}"/>
+                  </td>
+                </tr>
+              </table>
+            </h1>
+          </div>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"></hr>
+
+          <group col="4" colspan="4">
+            <separator string="Datos Básicos:" colspan="4" />
+            <label for="cedula"/>
+            <table>
+              <tr>
+                <td style="width:300px;">
+                  <div class="o_row">
+                    <field name="nacionalidad_real" style="width:50px;" attrs="{'readonly':[('solo_lectura','=',True)]}" />
+                    <field name="cedula" style="width:200px !important;" widget="regex_mask" data-inputmask-regex="[0-9]{2,14}"  attrs="{'readonly':[('solo_lectura','=',True)]}"/>
+                    <label for="" class="btn-bg btn-link mb4 fa fa-address-card-o oe_edit_only" style="cursor: pointer;" attrs="{'invisible':['|',('nacionalidad_real','=','s'),('solo_lectura','=',True)]}"/>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+            <field name="genero" widget="radio" options="{'horizontal': true}"/>
+            <field name="estado_civil" style="width:300px;"/>
+            <field name="fecha_nacimiento" style="width:300px;"/>
+            <field name="email" style="width:300px;" placeholder="usuario@ejemplo.com" widget="regex_mask" data-inputmask-regex="[a-zA-Z0-9._%-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}"/>
+            <field name="edad_" />
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"></hr>
+
+            <separator string="Dirección:" colspan="4"/>
+            <field name="nacionalidad" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" style="width:300px;"/>
+            <field name="estado" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" style="width:300px;"/>
+            <field name="municipio" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" style="width:300px;"/>
+            <field name="parroquia" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" style="width:300px;"/>
+            <field name="barrio_urb_zona" style="width:300px;" />
+            <field name="calle_callejon_av_trs" style="width:300px;" />
+            <field name="casa_edif" style="width:300px;" help="Número de Casa / Quinta / Edificio / Residencia / Bloque"/>
+            <field name="escalera" style="width:300px;" />
+            <field name="piso" style="width:300px;" />
+            <field name="apartamento" style="width:300px;" />
+            <field name="direccion" style="width:300px;"  />
+            <field name="foto_carnet_clave" style="width:300px;" attrs="{'invisible':True}" />
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"></hr>
+
+            <separator string="Teléfono(s):" colspan="4"/>
+            <field name="telefono_habitacion" style="width:300px;" widget="mask" data-inputmask="'mask': '(9999) 999-9999','removemaskonsubmit' : true"/>
+            <field name="telefono_celular" style="width:300px;" widget="mask" data-inputmask="'mask': '(9999) 999-9999','removemaskonsubmit' : true"/>
+            <field name="telefono_trabajo" style="width:300px;" widget="mask" data-inputmask="'mask': '(9999) 999-9999','removemaskonsubmit' : true"/>
+            <field name="hora_contacto" style="width:300px;" widget="radio" options="{'horizontal': true}"/>
+            <field name="fecha_reporte" style="width:300px;" attrs="{'invisible':True}" />
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"></hr>
+          </group>
+
+          <separator string="Cuestionario Inicial:" colspan="4"/>
+          <table style="width:100%; ">
+            <tr>
+              <td style="width:33%">
+                <label for="c4_nexo_familiar_related"/>
+                <br/>
+                <br/>
+              </td>
+              <td style="width:33%">
+                <label for="c5_grado_instruccion_related"/>
+                <br/>
+                <br/>
+              </td>
+              <td style="width:40%">
+                <label for="c6_situacion_ocupacion_related"/>
+                <br/>
+                <br/>
+              </td>
+            </tr>
+            <tr>
+              <td style="width:33%; vertical-align:top">
+                <field name="c4_nexo_familiar" nolabel="1" widget="radio"/>
+                <br/>
+                <br/>
+                <field name="c4_nexo_familiar_related" attrs="{'invisible':True,'required':[('c4_nexo_familiar','=',False)]}"/>
+                <br/>
+              </td>
+              <td style="width:33%">
+                <field name="c5_grado_instruccion" nolabel="1" widget="radio"/>
+                <br/>
+                <br/>
+                <field name="c5_grado_instruccion_related" attrs="{'invisible':True,'required':[('c5_grado_instruccion','=',False)]}"/>
+                <br/>
+              </td>
+              <td style="width:40%; vertical-align:top">
+                <field name="c6_situacion_ocupacion" nolabel="1" widget="radio"/>
+                <br/>
+                <br/>
+                <field name="c6_situacion_ocupacion_related" attrs="{'invisible':True,'required':[('c6_situacion_ocupacion','=',False)]}"/>
+                <br/>
+              </td>
+            </tr>
+          </table>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+          <label for="c7_tipo_vivienda_related"/>
+          <br/>
+          <br/>
+          <field name="c7_tipo_vivienda" nolabel="1" widget="radio" options="{'horizontal': true}"/>
+          <br/>
+          <br/>
+          <field name="c7_tipo_vivienda_related" attrs="{'invisible':True,'required':[('c7_tipo_vivienda','=',False)]}"/>
+          <br/>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+          <label for="c8_tenencia_vivienda_related"/>
+          <br/>
+          <br/>
+          <field name="c8_tenencia_vivienda" nolabel="1" widget="radio" options="{'horizontal': true}"/>
+          <br/>
+          <br/>
+          <field name="c8_tenencia_vivienda_related" attrs="{'invisible':True,'required':[('c8_tenencia_vivienda','=',False)]}"/>
+          <br/>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+          <table style="width:100%; ">
+            <tr>
+              <td style="width:33%">
+                <label for="c9_personas_viven_usted"/>
+                <br/>
+                <br/>
+              </td>
+              <td style="width:66%">
+                <label for="c10_personas_menores_6" attrs="{'invisible':['|','|',('c9_personas_viven_usted','=',False),('c9_personas_viven_usted','=',''),('c9_personas_viven_usted','=','0')]}"/>
+                <br/>
+                <br/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <field name="c9_personas_viven_usted" nolabel="1" style="width:200px;" widget="regex_mask" data-inputmask-regex="[0-9]{2,14}" attrs="{'required':[('c9_no_responde','=',False)]}"/>
+                <br/>
+                <field name="c9_no_responde"/>
+                <label for="c9_no_responde"/>
+                <br/>
+              </td>
+              <td >
+                <field name="c10_personas_menores_6" nolabel="1" style="width:200px;" attrs="{'invisible':['|','|','|',('c9_personas_viven_usted','=',False),('c9_personas_viven_usted','=',''),('c9_personas_viven_usted','=','0')],'required':[('c10_no_responde','=',False),('c10_personas_menores_6','=',''),('c9_personas_viven_usted','!=','0'),('c9_personas_viven_usted','!=','')],'readonly':[('c10_no_responde','=',True)]}" widget="regex_mask" data-inputmask-regex="[0-9]{2,14}" />
+                <br/>
+                <field name="c10_no_responde" attrs="{'invisible':['|','|',('c9_personas_viven_usted','=',False),('c9_personas_viven_usted','=',''),('c9_personas_viven_usted','=','0')]}"/>
+                <label for="c10_no_responde" attrs="{'invisible':['|','|',('c9_personas_viven_usted','=',False),('c9_personas_viven_usted','=',''),('c9_personas_viven_usted','=','0')]}"/>
+                <br/>
+              </td>
+            </tr>
+          </table>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+          <table style="width:100%; ">
+            <tr>
+              <td style="width:33%">
+                <label for="c11_personas_menores_6_12"/>
+                <br/>
+                <br/>
+              </td>
+              <td style="width:42%">
+                <label for="c12_personas_menores_6_12_escuela_related" attrs="{'invisible':['|','|','|',('c11_personas_menores_6_12','=',False),('c11_personas_menores_6_12','=',''),('c11_personas_menores_6_12','=','0')]}"/>
+                <br/>
+                <br/>
+              </td>
+              <td style="width:25%">
+                <label for="c13_frecuencia_escuela_related" attrs="{'invisible':['|','|','|','|',('c11_personas_menores_6_12','=',False),('c11_personas_menores_6_12','=',''),('c11_personas_menores_6_12','=','0'),('c12_personas_menores_6_12_escuela','=','pme3'),('c12_personas_menores_6_12_escuela','=','pme4')]}"/>
+                <br/>
+                <br/>
+              </td>
+            </tr>
+            <tr>
+              <td style="vertical-align:top;">
+                <field name="c11_personas_menores_6_12" nolabel="1" style="width:200px" widget="regex_mask" data-inputmask-regex="[0-9]{2,14}" attrs="{'required':[('c11_no_responde','=',False)],'readonly':[('c11_no_responde','=',True)]}"/>
+                <br/>
+                <field name="c11_no_responde"/>
+                <label for="c11_no_responde"/>
+                <br/>
+              </td>
+              <td>
+                <field name="c12_personas_menores_6_12_escuela" nolabel="1" widget="radio" attrs="{'invisible':['|','|','|',('c11_personas_menores_6_12','=',False),('c11_personas_menores_6_12','=',''),('c11_personas_menores_6_12','=','0')]}"/>
+                <br/>
+                <br/>
+                <field name="c12_personas_menores_6_12_escuela_related" attrs="{'invisible':True,'required':[('c12_personas_menores_6_12_escuela','=',False)]}"/>
+                <br/>
+              </td>
+              <td>
+                <field name="c13_frecuencia_escuela" nolabel="1" widget="radio" attrs="{'invisible':['|','|','|','|',('c11_personas_menores_6_12','=',False),('c11_personas_menores_6_12','=',''),('c11_personas_menores_6_12','=','0'),('c12_personas_menores_6_12_escuela','=','pme3'),('c12_personas_menores_6_12_escuela','=','pme4')]}"/>
+                <br/>
+                <br/>
+                <field name="c13_frecuencia_escuela_related" attrs="{'invisible':True,'required':[('c13_frecuencia_escuela','=',False),'|',('c12_personas_menores_6_12_escuela','=','pme1'),('c12_personas_menores_6_12_escuela','=','pme2')]}"/>
+                <br/>
+
+              </td>
+            </tr>
+          </table>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+          <table style="width:100%; ">
+            <tr>
+              <td style="width:33%">
+                <label for="c14_personas_ingresos"/>
+                <br/>
+                <br/>
+              </td>
+              <td style="width:42%">
+                <label for="c15_ingreso_hogar_related" attrs="{'invisible':['|','|',('c14_personas_ingresos','=',False),('c14_personas_ingresos','=',''),('c14_personas_ingresos','=','0')]}"/>
+                <br/>
+                <br/>
+              </td>
+              <td style="width:25%">
+                <label for="c16_principal_hogar_related" attrs="{'invisible':['|','|','|','|',('c15_ingreso_hogar','=','ih3'),('c14_personas_ingresos','=',False),('c14_personas_ingresos','=',''),('c14_personas_ingresos','=','0'),('c15_ingreso_hogar','=','ih2')]}"/>
+                <br/>
+                <br/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <field name="c14_personas_ingresos" style="width:200px;" widget="regex_mask" data-inputmask-regex="[0-9]{2,14}" nolabel="1" colspan="2" attrs="{'required':[('c14_no_responde','=',False)],'readonly':[('c14_no_responde','=',True)]}"/>
+                <br/>
+                <field name="c14_no_responde"/>
+                <label for="c14_no_responde"/>
+                <br/>
+              </td>
+              <td>
+                <field name="c15_ingreso_hogar" widget="radio" options="{'horizontal': true}" nolabel="1" colspan="2" attrs="{'invisible':['|','|',('c14_personas_ingresos','=',False),('c14_personas_ingresos','=',''),('c14_personas_ingresos','=','0')]}"/>
+                <br/>
+                <br/>
+                <field name="c15_ingreso_hogar_related" attrs="{'invisible':True,'required':[('c15_ingreso_hogar','=',False)]}"/>
+                <br/>
+
+              </td>
+              <td>
+                <field name="c16_principal_hogar" widget="radio" options="{'horizontal': true}" nolabel="1" colspan="2" attrs="{'invisible':['|','|','|','|',('c15_ingreso_hogar','=','ih3'),('c14_personas_ingresos','=',False),('c14_personas_ingresos','=',''),('c14_personas_ingresos','=','0'),('c15_ingreso_hogar','=','ih2')]}"/>
+                <br/>
+                <br/>
+                <field name="c16_principal_hogar_related" attrs="{'invisible':True,'required':[('c16_principal_hogar','=',False),('c15_ingreso_hogar','=','ih1')]}"/>
+                <br/>
+              </td>
+            </tr>
+          </table>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+          <label for="c17_familia_exterior_related"/>
+          <br/>
+          <br/>
+          <field name="c17_familia_exterior" nolabel="1" widget="radio" options="{'horizontal': true}"/>
+          <br/>
+          <br/>
+          <field name="c17_familia_exterior_related" attrs="{'invisible':True,'required':[('c17_familia_exterior','=',False)]}"/>
+          <br/>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+          <label for="c18_ayuda_economica_exterior_related"/>
+          <br/>
+          <br/>
+          <field name="c18_ayuda_economica_exterior" nolabel="1" widget="radio" options="{'horizontal': true}"/>
+          <br/>
+          <br/>
+          <field name="c18_ayuda_economica_exterior_related" attrs="{'invisible':True,'required':[('c18_ayuda_economica_exterior','=',False)]}"/>
+          <br/>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+          <label for="c19_beneficios_estado_related"/>
+          <br/>
+          <br/>
+          <field name="c19_beneficios_estado" nolabel="1" widget="many2many_checkboxes"/>
+          <br/>
+          <br/>
+          <field name="c19_beneficios_estado_related" attrs="{'invisible':True,'required':True}"/>
+          <br/>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+          <label for="c20_comidas_diarias_related"/>
+          <br/>
+          <br/>
+          <field name="c20_comidas_diarias" nolabel="1" widget="radio" options="{'horizontal': true}"/>
+          <br/>
+          <br/>
+          <field name="c20_comidas_diarias_related" attrs="{'invisible':True,'required':[('c20_comidas_diarias','=',False)]}"/>
+          <br/>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+          <label for="c21_principal_problema_related"/>
+          <br/>
+          <br/>
+          <field name="c21_principal_problema" nolabel="1" widget="many2many_checkboxes"/>
+          <br/>
+          <br/>
+          <field name="c21_principal_problema_related" attrs="{'invisible':True,'required':True}"/>
+          <br/>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+          <label for="c22_referido_related"/>
+          <br/>
+          <br/>
+          <field name="c22_referido" nolabel="1" options="{'horizontal': true}" widget="radio"/>
+          <br/>
+          <br/>
+          <field name="c22_referido_related" attrs="{'invisible':True,'required':[('c22_referido','=',False)]}"/>
+          <br/>
+          <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+          <field name="cedula_existe" attrs="{'invisible':True}"/>
+          <field name="solo_lectura" attrs="{'invisible':True}"/>
+
+
+          <group string="Seleccione el Área:" colspan="4" col="4">
+            <br/>
+            <newline/>
+            <field name="cle_activar"/>
+            <field name="cso_activar"/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+          </group>
+
+
+          <group string="Cuestionario Legal" colspan="2" col="2" attrs="{'invisible':[('cle_activar','=',False)]}">
+            <br/>
+            <newline/>
+            <label for="cl1_servicio_related" />
+            <newline/>
+            <field name="cl1_servicio" widget="radio" options="{'horizontal': true}" nolabel="1" style="margin:12px 0px 25px 0px;"/>
+            <field name="cl1_servicio_related" attrs="{'invisible':True,'required':[('cle_activar','=',True),('cl1_servicio','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+            <label for="cl2_canalizar_related" />
+            <newline/>
+            <field name="cl2_canalizar" widget="radio" options="{'horizontal': true}" nolabel="1" style="margin:12px 0px 25px 0px;"/>
+            <field name="cl2_canalizar_related" attrs="{'invisible':True,'required':[('cle_activar','=',True),('cl2_canalizar','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+            <label for="cl4_asistencia_related" />
+            <newline/>
+            <field name="cl4_asistencia" widget="radio" options="{'horizontal': true}" nolabel="1" style="margin:12px 0px 25px 0px;"/>
+            <field name="cl4_asistencia_related" attrs="{'invisible':True,'required':[('cle_activar','=',True),('cl4_asistencia','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+            <label for="cl5_tramite_related" />
+            <newline/>
+            <field name="cl5_tramite" widget="radio" options="{'horizontal': true}" nolabel="1" style="margin:12px 0px 25px 0px;"/>
+            <field name="cl5_tramite_related" attrs="{'invisible':True,'required':[('cle_activar','=',True),('cl5_tramite','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4" />
+
+            <label for="cl6_tribunales_related"/>
+            <newline/>
+            <field name="cl6_tribunales" nolabel="1" widget="radio" options="{'horizontal': true}" style="margin:12px 0px 25px 0px;"/>
+            <field name="cl6_tribunales_related" attrs="{'invisible':True,'required':[('cle_activar','=',True),('cl6_tribunales','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+            <label for="cl7_experiencia_related" attrs="{'invisible':['|',('cl6_tribunales','=','tri2'),('cl6_tribunales','=','tri3')]}"/>
+            <newline/>
+            <field name="cl7_experiencia" nolabel="1" widget="radio" options="{'horizontal': true}" attrs="{'invisible':['|',('cl6_tribunales','=','tri2'),('cl6_tribunales','=','tri3')]}" style="margin:12px 0px 25px 0px;"/>
+            <field name="cl7_experiencia_related" attrs="{'invisible':True,'required':[('cle_activar','=',True),('cl6_tribunales','=','tri1'),('cl7_experiencia','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4" attrs="{'invisible':['|',('cl6_tribunales','=','tri2'),('cl6_tribunales','=','tri3')]}" />
+
+            <label for="cl8_ddhh_related" />
+            <newline/>
+            <field name="cl8_ddhh" widget="radio" options="{'horizontal': true}" nolabel="1" style="margin:12px 0px 25px 0px;"/>
+            <field name="cl8_ddhh_related" attrs="{'invisible':True,'required':[('cle_activar','=',True),('cl8_ddhh','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+            <label for="cl9_justicia_related"/>
+            <newline/>
+            <field name="cl9_justicia" nolabel="1" widget="radio" options="{'horizontal': true}" style="margin:12px 0px 25px 0px;"/>
+            <field name="cl9_justicia_related" attrs="{'invisible':True,'required':[('cle_activar','=',True),('cl9_justicia','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+            <label for="cl10_transicional_related"/>
+            <newline/>
+            <field name="cl10_transicional" nolabel="1" widget="radio" options="{'horizontal': true}" style="margin:12px 0px 25px 0px;"/>
+            <field name="cl10_transicional_related" attrs="{'invisible':True,'required':[('cle_activar','=',True),('cl10_transicional','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+          </group>
+
+          <group string="Cuestionario Social" colspan="2" col="2" attrs="{'invisible':[('cso_activar','=',False)]}">
+            <br/>
+            <newline/>
+            <label for="cs1_actividad_related" />
+            <newline/>
+            <field name="cs1_actividad" widget="radio" options="{'horizontal': true}" nolabel="1" style="margin:12px 0px 25px 0px;"/>
+            <field name="cs1_actividad_related" attrs="{'invisible':True,'required':[('cso_activar','=',True),('cs1_actividad','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+            <label for="cs2_actividad_asistencia_related" attrs="{'invisible':['|',('cs1_actividad','=','act2'),('cs1_actividad','=','act3')]}"/>
+            <newline/>
+            <field name="cs2_actividad_asistencia" widget="many2many_checkboxes" nolabel="1" attrs="{'invisible':['|',('cs1_actividad','=','act2'),('cs1_actividad','=','act3')]}" style="margin:12px 0px 25px 0px;" />
+            <field name="cs2_actividad_asistencia_related" attrs="{'invisible':True,'required':[('cso_activar','=',True),'|',('cs1_actividad','=','act1'),('cs1_actividad','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4" attrs="{'invisible':['|',('cs1_actividad','=','act2'),('cs1_actividad','=','act3')]}"/>
+
+            <label for="cs3_capacidad_related" />
+            <newline/>
+            <field name="cs3_capacidad" widget="radio" options="{'horizontal': true}" nolabel="1" style="margin:12px 0px 25px 0px;"/>
+            <field name="cs3_capacidad_related" attrs="{'invisible':True,'required':[('cso_activar','=',True),('cs3_capacidad','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+            <label for="cs4_tribunales_related" attrs="{'invisible':[('cs3_capacidad','=','cap1')]}"/>
+            <newline/>
+            <field name="cs4_tribunales" nolabel="1" widget="many2many_checkboxes" attrs="{'invisible':[('cs3_capacidad','=','cap1')]}" style="margin:12px 0px 25px 0px;"/>
+            <field name="cs4_tribunales_related" attrs="{'invisible':True,'required':[('cso_activar','=',True),('cs3_capacidad','!=','cap1')]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4" attrs="{'invisible':[('cs3_capacidad','=','cap1')]}"/>
+
+            <label for="cs5_contribuir_related"/>
+            <newline/>
+            <field name="cs5_contribuir" nolabel="1" widget="radio" options="{'horizontal': true}" style="margin:12px 0px 25px 0px;"/>
+            <field name="cs5_contribuir_related" attrs="{'invisible':True,'required':[('cso_activar','=',True),('cs5_contribuir','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+            <label for="cs6_no_contribuir_related" attrs="{'invisible':[('cs5_contribuir','=','con1')]}"/>
+            <newline/>
+            <field name="cs6_no_contribuir" nolabel="1" widget="many2many_checkboxes" attrs="{'invisible':[('cs5_contribuir','=','con1')]}" style="margin:12px 0px 25px 0px;"/>
+            <field name="cs6_no_contribuir_related" attrs="{'invisible':True,'required':[('cso_activar','=',True),('cs5_contribuir','!=','con1')]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4" attrs="{'invisible':[('cs5_contribuir','=','con1')]}"/>
+
+            <label for="cs7_participar_actividades_related"/>
+            <newline/>
+            <field name="cs7_participar_actividades" nolabel="1" widget="radio" options="{'horizontal': true}" style="margin:12px 0px 25px 0px;"/>
+            <field name="cs7_participar_actividades_related" attrs="{'invisible':True,'required':[('cso_activar','=',True),('cs7_participar_actividades','=',False)]}"/>
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4"/>
+
+            <label for="cs8_ayuda_economica_exterior" attrs="{'invisible':[('cs7_participar_actividades','=','pact1')]}"/>
+            <newline/>
+            <field name="cs8_ayuda_economica_exterior" nolabel="1" style="width:600px;margin:12px 0px 12px 0px;" attrs="{'invisible':[('cs7_participar_actividades','=','pact1')],'required':[('cso_activar','=',True),('cs7_participar_actividades','!=','pact1')]}" />
+            <newline/>
+            <hr style="color: #dddddd;width: 99%;text-align: left !important;;" colspan="4" attrs="{'invisible':[('cs7_participar_actividades','=','pact1')]}"/>
+
+            <label for="cs9_expectativas_related" />
+            <newline/>
+            <field name="cs9_expectativas" nolabel="1" widget="many2many_checkboxes" style="margin:12px 0px 25px 0px;"/>
+            <field name="cs9_expectativas_related" attrs="{'invisible':True,'required':[('cso_activar','=',True)]}"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_asesoria_tree_view">
+    <field name='name'>registro.asesoria.tree</field>
+    <field name='model'>registro.asesoria</field>
+    <field name='arch' type='xml'>
+      <tree string="Registro" default_order="write_date desc">
+        <field name="nombre" />
+        <field name="apellido" />
+        <field name="cedula"/>
+        <field name="estado_civil"/>
+        <field name="genero"/>
+        <field name="datos_jornada_calendario"/>
+        <field name="create_uid" string="Registrado por:"/>
+        <field name="cs1_actividad" attrs="{'column_invisible':1}" />
+        <field name="cl1_servicio" attrs="{'column_invisible':1}" />
+        <button type="action" class="oe_read_only btn-link" name="%(action_view_casos_legal)d" context="{'default_cedula': cedula}" icon="fa-balance-scale" string="Ir Área Legal" help="Registrar un Caso legal para este pasajero" attrs="{'invisible':[('cl1_servicio','=',False)]}"/>
+        <button type="action" class="oe_read_only btn-link" name="%(action_view_registro_area_social_actividad_ventana)d" context="{'default_cedula': cedula,'default_cargar_nuevo_pasajero':'cnp2'}" icon="fa-users" string="Ir Área Social" help="Registrar un Caso social para este pasajero" attrs="{'invisible':[('cs1_actividad','=',False)]}" />
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_asesoria_graph_view">
+    <field name="name">registro.asesoria.graph</field>
+    <field name="model">registro.asesoria</field>
+    <field name="arch" type="xml">
+      <graph string="Viajeros Registrados por estado">
+        <field name="estado" type="row"/>
+        <field name="id" type="col"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_asesoria_kanban_view">
+    <field name='name'>registro.asesoria.kanban</field>
+    <field name='model'>registro.asesoria</field>
+    <field name="arch" type="xml">
+      <kanban>
+        <field name="nombre" />
+        <field name="apellido" />
+        <field name="cedula"/>
+        <field name="estado_civil"/>
+        <field name="genero"/>
+        <field name="datos_jornada_calendario"/>
+        <templates>
+          <t t-name="kanban-box">
+            <div t-attf-class="oe_kanban_global_click_edit oe_semantic_html_override
+        oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+              <div class="oe_dropdown_kanban">
+                <!-- dropdown menu -->
+                <div class="oe_dropdown_toggle">
+                  <i class="fa fa-bars fa-lg"/>
+                  <ul class="oe_dropdown_menu">
+                    <li>
+                      <a type="edit">Editar Pasajero</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="oe_clear"></div>
+              </div>
+              <div t-attf-class="oe_kanban_content">
+                <!-- title -->
+                <b>Nombres:</b>
+                <field name="nombre"/>
+                <br/>
+                <b>Apellidos:</b>
+                <field name="apellido"/>
+                <br/>
+                <b>Cedula:</b>
+                <field name="cedula"/>
+                <br/>
+                <b>Estado Civil:</b>
+                <field name="estado_civil"/>
+                <br/>
+                <b>Sexo:</b>
+                <field name="genero"/>
+                <br/>
+                <b>Participante de:</b>
+                <field name="datos_jornada_calendario"/>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <record id="registro_asesoria_search_view" model="ir.ui.view">
+    <field name="name">registro.asesoria.search</field>
+    <field name="model">registro.asesoria</field>
+    <field name="arch" type="xml">
+      <search string="Search Registro Caso Legal">
+        <field name="cedula"/>
+        <field name="nombre"/>
+        <field name="apellido"/>
+        <field name="genero"/>
+        <field name="estado_civil"/>
+        <field name="datos_jornada_calendario"/>
+        <separator/>
+        <filter string="Viajes del día" name="viaje_dia" domain="[('write_date', '>=',context_today().strftime('%Y-%m-%d'))]" help="Cantidad de viajes realizados hoy"/>
+        <group expand="0" string="Group By">
+          <filter string="Cedula" name="cedula" context="{'group_by':'cedula'}"/>
+          <filter string="Nombre" name="nombre" context="{'group_by':'nombre'}"/>
+          <filter string="Apellido" name="apellido" context="{'group_by':'apellido'}"/>
+          <filter string="Estado Civil" name="estado_civil" context="{'group_by':'estado_civil'}"/>
+          <filter string="Genero" name="genero" context="{'group_by':'genero'}"/>
+          <filter string="Jornada" name="jornada" context="{'group_by':'datos_jornada_calendario'}"/>
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_asesoria">
+    <field name="name">Pasajeros</field>
+    <field name="res_model">registro.asesoria</field>
+    <field name="view_mode">tree,form,kanban,graph</field>
+    <field name="domain">[]</field>
+    <field name="context">{'search_default_viaje_dia':1}</field>
+    <field name="limit">20</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Registra un nuevo Pasajero en la Nave</p>
+    </field>
+  </record>
+
+  <menuitem id="menu_registro_asesoria" name="Registro Pasajero" action="action_view_asesoria" sequence="2"/>
+
+</odoo>

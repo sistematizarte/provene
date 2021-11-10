@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<odoo>
+	<report 
+   id = "report_tripu_unic"
+   string = "Reporte Por Tripulante"
+   model = "casos.legal"
+   report_type = "qweb-pdf"
+   name = "provene.report_tripulante_unic_template"
+   />
+   <template id = "report_tripulante_unic_template"> 
+    <t t-call="web.html_container">
+      <t t-call="web.external_layout">      	
+        <div class="page">
+          <t t-set="cantidad" t-value="1"/>
+          <center>
+             <table class = "table table-condensed">
+              <thead>                
+                <tr> 
+                  <th></th>
+                  <th colspan="2" class="text-right">
+                    <p><h4>Casos Registrados Por:</h4></p>
+                  </th>
+                  <th colspan="2" class="text-left">
+                    <t t-foreach="docs[0]" t-as='i'/>
+                      <p><b><h4 t-field="docs[0].create_uid"/></b></p>
+                  </th>
+                  <th ></th>
+               </tr>
+               <tr>
+                  <th>
+                    <p style = "text-align:center;"><strong>Tripulante Asistente</strong></p>
+                  </th>
+                  <th>
+                    <p style = "text-align:center;"><strong>Documento Registrado</strong></p>
+                  </th>
+                  <th>
+                    <p style = "text-align:center;"><strong>Nombre</strong></p>
+                  </th>
+                  <th>
+                    <p style = "text-align:center;"><strong>Apellido</strong></p>
+                  </th>
+                  <th>
+                    <p style = "text-align:center;"><strong>Cédula</strong></p>
+                  </th>
+                  <th>
+                    <p style = "text-align:center;"><strong>Jornada</strong></p>
+                  </th>              
+                </tr>
+              </thead>
+              <tbody>                
+                <tr t-foreach="docs" t-as='o'>
+                  <t t-set="cantidad" t-value="cantidad + 1"/>                  
+                 <td>
+                    <p style = "text-align:center;" t-field="o.create_uid"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.categoria_area_legal"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.nombre"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.apellido"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.cedula"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.datos_jornada_calendario"/>
+                  </td>                                
+                </tr>
+              <tr>
+                <td>
+                    <p style = "text-align:center;"><strong>TOTAL DE CASOS </strong></p>
+                </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>                  
+                    <td> <t t-set="total" t-value="cantidad - 1"/>
+                    <p style = "text-align:center;" t-esc="total"/></td>
+                    <td></td> 
+                </tr>                     
+              </tbody>
+            </table>
+            <div style="page-break-after: always"></div>         
+        </center>
+       <div class="footer">
+        <div class="text-center" style="border-top: 1px solid black;">
+          <ul class="list-inline">
+            <t t-foreach="docs[0]" t-as='e'/>
+            <li>Fecha de Reporte:<span t-field="docs[0].fecha_reporte"/></li>
+            <li>Page:<span class="page"/><strong>/</strong><span class="topage"/></li>
+          </ul>
+        </div>
+      </div>
+      </div>
+     
+    </t>
+  </t>
+</template>
+</odoo>
+

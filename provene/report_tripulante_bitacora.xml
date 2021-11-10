@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<odoo>
+	<report 
+   id = "report_tripulante"
+   string = "Reporte Tripulante"
+   model = "registro.asesoria.calendario"
+   report_type = "qweb-pdf"
+   name = "provene.report_tripulante_calen_template"
+   />
+   <template id = "report_tripulante_calen_template"> 
+    <t t-call="web.html_container">
+      <t t-call="web.external_layout">      	
+        <div class="page">
+          <t t-set="cantidad" t-value="1"/>
+          <center>
+            <!-- <div class = "col-xs-8" style="margin: auto;"> -->
+             <table class = "table table-condensed">
+              <thead>                
+                <tr> 
+                  <th></th>
+                  <th colspan="2" class="text-right">
+                    <ul class="list-inline">                      
+                       <p><h4>Actividad de:</h4></p>
+                    </ul>
+                  </th>
+                  <th colspan="2" class="text-left"><t t-foreach="docs[0]" t-as='i'/>
+                    <ul>
+                      <p><h4 t-field="docs[0].tripulante_usuario"/></p>
+                    </ul>
+                  </th>                  
+                  <th></th>
+               </tr>
+               <tr>
+                  <th>
+                    <p style = "text-align:center;"><strong>Tripulante Asistente</strong></p>
+                  </th>
+                  <th>
+                    <p style = "text-align:center;"><strong>Tipo de Actividad</strong></p>
+                  </th>
+                  <th>
+                    <p style = "text-align:center;"><strong>Fecha Inicio de Jornada</strong></p>
+                  </th>
+                  <th>
+                    <p style = "text-align:center;"><strong>Fecha Fin de Jornada</strong></p>
+                  </th>
+                  <th>
+                    <p style = "text-align:center;"><strong>Estado</strong></p>
+                  </th>
+                   <th>
+                    <p style = "text-align:center;"><strong>Municipio</strong></p>
+                  </th>
+                  <th>
+                    <p style = "text-align:center;"><strong>Parroquia</strong></p>
+                  </th>             
+                </tr>
+              </thead>
+              <tbody>                
+                <tr t-foreach="docs" t-as='o'>
+                  <t t-set="cantidad" t-value="cantidad + 1"/>                  
+                 <td>
+                    <p style = "text-align:center;" t-field="o.tripulante_usuario"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.name"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.fecha_inicio_jornada"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.fecha_fin_jornada"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.estado"/>
+                  </td>
+                  <td>
+                    <p style = "text-align:center;" t-field="o.municipio"/>
+                  </td> 
+                  <td>
+                    <p style = "text-align:center;" t-field="o.parroquia"/>
+                  </td>                               
+                </tr>
+              <tr>
+                <td>
+                    <p style = "text-align:center;"><strong>TOTAL DE CASOS </strong></p>
+                </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>                  
+                    <td> <t t-set="total" t-value="cantidad - 1"/>
+                    <p style = "text-align:center;" t-esc="total"/></td>
+                    <td></td> 
+                </tr>                     
+              </tbody>
+            </table>
+            <div style="page-break-after: always"></div>         
+        </center>
+       <div class="footer">
+        <div class="text-center" style="border-top: 1px solid black;">
+          <ul class="list-inline">
+            <t t-foreach="docs[0]" t-as='e'/>
+            <li>Fecha de Reporte:<span t-field="docs[0].fecha_reporte"/></li>
+            <li>Page:<span class="page"/><strong>/</strong><span class="topage"/></li>
+          </ul>
+        </div>
+      </div>
+      </div>
+     
+    </t>
+  </t>
+</template>
+</odoo>
+

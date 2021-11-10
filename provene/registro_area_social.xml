@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Comentario en la Views -->
+
+
+  <record model="ir.ui.view" id="registro_actividad_social_form_view">
+    <field name='name'>registro.actividad.social.form</field>
+    <field name='model'>registro.actividad.social</field>
+    <field name='arch' type='xml'>
+      <form string="actividad social" duplicate="0">
+        <sheet>
+          <group string="Datos de la Actividad" col="2" colspan="2">
+
+            <field name="tipo_actividad_2" widget="radio" options="{'horizontal': true}" attrs="{'readonly':False}" />
+            <field name="actividad_area_social" style="width:330px;" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" attrs="{'readonly':False}"/>
+            <field name="pasajeros_id" widget="one2many_list">
+              <tree string="Pasajeros Convocados" editable="bottom">
+                <field name="cedula" />
+                <field name="nombre" />
+                <field name="apellido" />
+                <field name="estatus_convocatoria" />
+
+              </tree>
+            </field>
+            <field name="fecha_inicio_actividad" style="width:250px;" attrs="{'invisible':True}" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_actividad_social_tree_view">
+    <field name='name'>registro.actividad.social.tree</field>
+    <field name='model'>registro.actividad.social</field>
+    <field name='arch' type='xml'>
+      <tree string="Actividad social" default_order="write_date desc">
+        <field name="actividad_area_social" />
+        <field name="tipo_actividad_2" />
+        <field name="pasajeros_id" widget="many2many_tags"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_pasajeros_actividad_social_form_view">
+    <field name='name'>registro.pasajeros.actividad.social.form</field>
+    <field name='model'>registro.pasajeros.actividad.social</field>
+    <field name='arch' type='xml'>
+      <form string="pasajeros actividad social" duplicate="0">
+        <header>
+          <field name="estatus_convocatoria" widget="statusbar" clickable="True"/>
+        </header>
+        <sheet>
+          <group string="Datos de la Actividad" col="2" colspan="2">
+            <field name="tipo_actividad_3" widget="radio" options="{'horizontal': true}" attrs="{'readonly':[('solo_lectura','=',True)]}"/>
+            <field name="actividad_id" style="width:330px;" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" attrs="{'readonly':[('solo_lectura','=',True)]}"/>
+            <field name="fecha_inicio_actividad" style="width:250px;" attrs="{'invisible':True}"/>
+          </group>
+          <group string="Datos de Pasajero">
+            <newline/>
+            <div class="oe_title">
+              <h2>
+                <table>
+                  <tr>
+                    <td>
+                      <label for="cedula" string="Cédula del Pasajero:" style="width:150px;vertical-align:top;"/>
+                    </td>
+                    <td style="width:450px">
+                      <div class="o_row">
+                        <field name="cedula" widget="regex_mask" data-inputmask-regex="[0-9]{2,14}" attrs="{'readonly':[('solo_lectura','=',True)]}"/>
+                        <label for="" class="btn-bg btn-link mb4 fa fa-address-card-o oe_edit_only" style="cursor: pointer" help="Buscar Cédula del pasajero" attrs="{'invisible':[('solo_lectura','=',True)]}"/>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="nombre" string="Nombres:" style="vertical-align:top;"/>
+                    </td>
+                    <td>
+                      <field name="nombre" placeholder="Nombres ..." style="width:450px;" attrs="{'readonly':['|',('cedula','=',''),('cedula','=',False)],'invisible':['|',('cedula','=',False),'|',('cedula','=',''),'&amp;',('cedula','!=',''),('nombre','=','')]}"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="apellido" string="Apellidos:" style="vertical-align:top;"/>
+                    </td>
+                    <td>
+                      <field name="apellido" placeholder="Apellidos ..." style="width:450px;" attrs="{'readonly':['|',('cedula','=',''),('cedula','=',False)],'invisible':['|',('cedula','=',False),'|',('cedula','=',''),'&amp;',('cedula','!=',''),('apellido','=','')]}"/>
+                    </td>
+                  </tr>
+                </table>
+              </h2>
+              <field name="solo_lectura" attrs="{'invisible':True}"/>
+            </div>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_pasajeros_actividad_social_tree_view">
+    <field name='name'>registro.pasajeros.actividad.social.tree</field>
+    <field name='model'>registro.pasajeros.actividad.social</field>
+    <field name='arch' type='xml'>
+      <tree string="Pasajeros Actividad social" default_order="cedula desc">
+        <field name="actividad_id"/>
+        <field name="cedula" />
+        <field name="nombre" />
+        <field name="apellido" />
+        <field name="estatus_convocatoria"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_pasajeros_actividad_social_kanban_view">
+    <field name='name'>registro.pasajeros.actividad.social.kanban</field>
+    <field name='model'>registro.pasajeros.actividad.social</field>
+    <field name="arch" type="xml">
+      <kanban default_group_by="estatus_convocatoria">
+        <field name="actividad_id"/>
+        <field name="tipo_actividad_3" />
+        <field name="cedula" />
+        <field name="nombre" />
+        <field name="apellido" />
+        <field name="estatus_convocatoria"/>
+        <progressbar field="estatus_convocatoria" colors='{"nasis": "danger", "conv" : "warning", "asis":"success"}'/>
+        <templates>
+          <t t-name="kanban-box">
+            <div t-attf-class="oe_kanban_global_click_edit oe_semantic_html_override
+        oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+              <div class="oe_dropdown_kanban">
+                <!-- dropdown menu -->
+                <div class="oe_dropdown_toggle">
+                  <i class="fa fa-bars fa-lg"/>
+                  <ul class="oe_dropdown_menu">
+                    <li>
+                      <a type="edit">Editar Respuestas Cuestionario social</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="oe_clear"></div>
+              </div>
+              <div t-attf-class="oe_kanban_content">
+                <!-- title -->
+                <b>Nombres:</b>
+                <field name="nombre"/>
+                <br/>
+                <b>Apellidos:</b>
+                <field name="apellido"/>
+                <br/>
+                <b>Cedula:</b>
+                <field name="cedula"/>
+                <br/>
+                <b>Nombre de la Actividad:</b>
+                <field name="actividad_id"/>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_pasajeros_actividad_social_graph_view">
+    <field name='name'>registro.pasajeros.actividad.social.graph</field>
+    <field name='model'>registro.pasajeros.actividad.social</field>
+    <field name="arch" type="xml">
+      <graph string="Pasajeros Actividad social">
+        <field name="estatus_convocatoria"/>
+      </graph>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="registro_pasajeros_actividad_social_search_view">
+    <field name='name'>registro.pasajeros.actividad.social.search</field>
+    <field name='model'>registro.pasajeros.actividad.social</field>
+    <field name="arch" type="xml">
+      <search string="Pasajeros Actividad social">
+        <field name="actividad_id"/>
+        <field name="tipo_actividad_3" />
+        <field name="cedula" />
+        <field name="nombre" />
+        <field name="apellido" />
+        <field name="estatus_convocatoria"/>
+        <separator />
+        <filter string="Viajes del día" name="viaje_dia" domain="[('write_date', '>=',context_today().strftime('%Y-%m-%d'))]" help="Cantidad de viajes realizados hoy"/>
+        <group expand="0" string="Group By">
+          <filter string="Cedula" name="cedula" context="{'group_by':'cedula'}"/>
+          <filter string="Nombre de Actividad" name="actividad_id" context="{'group_by':'actividad_id'}"/>
+          <filter string="Estatus Convocatoria" name="estatus_convocatoria" context="{'group_by':'estatus_convocatoria'}"/>
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_registro_area_social_actividad">
+    <field name="name">Actividades Área Social</field>
+    <field name="res_model">registro.actividad.social</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_registro_area_social_actividad_ventana">
+    <field name="name">Actividades Área Social</field>
+    <field name="res_model">registro.pasajeros.actividad.social</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_registro_area_social_pasajeros">
+    <field name="name">Agregar Pasajeros</field>
+    <field name="res_model">registro.pasajeros.actividad.social</field>
+    <field name="view_mode">tree,form,search</field>
+    <field name="context">{'group_by':'actividad_id'}</field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_registro_area_social_pasajeros_kanban">
+    <field name="name">Agregar Pasajeros</field>
+    <field name="res_model">registro.pasajeros.actividad.social</field>
+    <field name="view_mode">kanban,tree,form,graph,search</field>
+
+  </record>
+
+  <menuitem id="menu_registro_area_social_actividad" name="Área Social" action="action_view_registro_area_social_actividad" sequence="8"/>
+  <menuitem id="menu_registro_area_social_pasajeros" name="Consulta Área Social" action="action_view_registro_area_social_pasajeros" sequence="8"/>
+  <menuitem id="menu_registro_area_social_pasajeros_kanban" name="Convocatoria" action="action_view_registro_area_social_pasajeros_kanban" sequence="8"/>
+
+</odoo>

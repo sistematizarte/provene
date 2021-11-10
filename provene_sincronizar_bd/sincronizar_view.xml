@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Vista form de Res Users -->
+  <record model="ir.ui.view" id="provene_sincronizar_bd_tree_view">
+    <field name='name'>provene.sincronizar.bd.tree</field>
+    <field name='model'>provene.sincronizar.bd</field>
+    <field name='arch' type='xml'>
+      <tree string="Sincronizar" default_order="write_date desc">
+        <field name="name" />
+        <field name="name_fin" />
+        <field name="tiempo_transcurrido" />
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="provene_sincronizar_bd_form_view">
+    <field name='name'>provene.sincronizar.bd.form</field>
+    <field name='model'>provene.sincronizar.bd</field>
+    <field name='arch' type='xml'>
+      <form string="Sincronizar">
+        <header>
+          <field name="estatus" widget="statusbar" attrs="{'readonly':True}"/>
+        </header>
+        <sheet>
+          <div name="button_box" class="oe_button_box">
+            <button name="submenu_usuarios" string="Bajar Datos" type="object" class="btn-primary oe_edit_only" icon="fa-download" attrs="{'invisible':[('estatus','!=','0')]}"/>
+            <button name="main_down" string="Sinc. Usuarios" type="object" class="btn-primary oe_edit_only" icon="fa-refresh" attrs="{'invisible':[('estatus','!=','1')]}" />
+            <button name="main_up" string="Subir Datos" type="object" class="btn-primary oe_edit_only" icon="fa-upload" attrs="{'invisible':[('estatus','!=','0')]}" />
+            <button name="mostrar_resultados_update" string="Resultados" type="object" class="btn-primary oe_edit_only" icon="fa-television " attrs="{'invisible':[('estatus','!=','2')]}" />
+          </div>
+          <group string="Sincronizar" colspan="4" col="4">
+            <field name="name" attrs="{'readonly':True}" colspan="2"/>
+            <field name="name_fin" attrs="{'readonly':True}" colspan="2"/>
+            <field name="tiempo_transcurrido" attrs="{'readonly':True}" colspan="2"/>
+          </group>
+          <label for="resultados_update" string="Resultados de la Sincronización" colspan="4"/>
+          <field name="resultados_update" nolabel="1" colspan="4" attrs="{'readonly':True}"/>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_view_sincronizar_bd">
+    <field name="name">Sicronizacion</field>
+    <field name="res_model">provene.sincronizar.bd</field>
+    <field name="view_mode">tree,form</field>
+    <field name="limit">20</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Sincronizar Bases de Datos de la Nave</p>
+    </field>
+  </record>
+
+  <menuitem id="menu_sincronizar_bd" name="Sicronización de BD" action="action_view_sincronizar_bd" sequence="100"/>
+</odoo> 
